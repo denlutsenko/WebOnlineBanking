@@ -16,6 +16,6 @@
 </head>
 <body>
 <h2 ALIGN="center"><fmt:message key="${sessionScope.msg}"/></h2>
-admin zone
+
 </body>
 </html>

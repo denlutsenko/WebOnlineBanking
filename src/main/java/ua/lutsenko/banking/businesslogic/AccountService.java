@@ -1,8 +1,5 @@
 package ua.lutsenko.banking.businesslogic;
 
-
-
-
 import ua.lutsenko.banking.command.RequestWrapper;
 import ua.lutsenko.banking.currencymanager.CurrencyConversion;
 import ua.lutsenko.banking.dao.DaoFactory;
@@ -27,11 +24,20 @@ public class AccountService {
         this.daoFactory = DaoFactory.getInstance();
     }
 
+    /**
+     * This method builds list of all condition by client cards.
+     * @return list of conditions.
+     */
     public List<Condition> getAllConditions() {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         return daoFactory.getConditionDao().getAccountConditions(userId);
     }
 
+    /**
+     * This method builds list of card conditions by card type (debit or credit).
+     * @param cardType contain type of card (debit or credit).
+     * @return list of conditions.
+     */
     public List<Condition> getConditions(String cardType) {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         return daoFactory.getConditionDao().getConditions(userId, cardType);
@@ -42,12 +48,21 @@ public class AccountService {
         return daoFactory.getConditionDao().showActiveAccounts(userId);
     }
 
+    /**
+     * This method builds payment history by id card.
+     * @return list of operations.
+     */
     public List<Operation> showAccountHistory() {
         String currIdcard = wrapper.findParameterByName("idCard");
         int currCardId = Integer.parseInt(currIdcard);
         return daoFactory.getOperationDao().showAccountHistory(currCardId);
     }
 
+    /**
+     * This method makes payment.
+     * @return boolean flag.
+     * @throws SQLException
+     */
     public boolean doPayment() throws SQLException {
         String currCardId = wrapper.findParameterByName("idFromCard");
         String currOperationSumm = wrapper.findParameterByName("operationSumm");
@@ -62,6 +77,11 @@ public class AccountService {
         return daoFactory.getAccountDao().doPayment(idCard, operationType, currDate, operationSumm);
     }
 
+    /**
+     * This method makes inner transfer between two accounts of client.
+     * @return boolean flag.
+     * @throws SQLException
+     */
     public boolean doInnerTransfer() throws SQLException {
         CurrencyConversion conversion = new CurrencyConversion();
         String fromCard = wrapper.findParameterByName("idFromCard");
@@ -95,6 +115,10 @@ public class AccountService {
         return daoFactory.getAddressDao().isAddressExist(userId);
     }
 
+    /**
+     * This method creates new application from client.
+     * @return boolean flag.
+     */
     public boolean insertApplication(){
         final String accountStatus = "PENDING";
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
@@ -111,6 +135,11 @@ public class AccountService {
         return daoFactory.getAccountDao().blockAccount(cardNumber);
     }
 
+    /**
+     * This method updates balance by card id.
+     * @return
+     * @throws SQLException
+     */
     public boolean updateBalance() throws SQLException {
         String currCardId = wrapper.findParameterByName("currCardId");
         String operationType = wrapper.findParameterByName("operationType");
@@ -135,7 +164,10 @@ public class AccountService {
         return daoFactory.getApplicationDao().getApplications();
     }
 
-
+    /**
+     * This method creates new account.
+     * @return boolean flag.
+     */
     public boolean createAccount(){
         int userId = Integer.parseInt((String) wrapper.findSessionAttrByName("userId"));
         String currency = (String) wrapper.findSessionAttrByName("currency");
@@ -145,6 +177,11 @@ public class AccountService {
         return daoFactory.getAccountDao().createAccount(userId, accountCode, currDate, currency, balance);
     }
 
+    /**
+     * This method creates conditions for account.
+     * @return boolean flag.
+     * @throws SQLException
+     */
     public boolean createConditions() throws SQLException {
         String accountCode = wrapper.findParameterByName("accountCode");
         int accountId = getAccountId(accountCode);
@@ -160,11 +197,20 @@ public class AccountService {
         return daoFactory.getAccountDao().getAccountId(accountCode);
     }
 
+    /**
+     * This method changes application status.
+     * @param status contain new value of status.
+     * @return boolean flag.
+     */
     public boolean updateApplicationStatus(String status) {
         int id = Integer.parseInt((String)wrapper.findSessionAttrByName("applicationId"));
        return  daoFactory.getApplicationDao().updateApplicationStatus(id, status);
     }
 
+    /**
+     * Tis method deletes application.
+     * @return boolean flag.
+     */
     public boolean deleteApplication(){
         int id = Integer.parseInt(wrapper.findParameterByName("applicationId"));
         return daoFactory.getApplicationDao().deleteApplication(id);

@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.entity.User;
 

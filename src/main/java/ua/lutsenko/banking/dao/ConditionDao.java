@@ -33,7 +33,6 @@ public class ConditionDao {
         this.ds = ds;
     }
 
-
     /**
      * This method builds all account conditions of current user.
      * @param userId contain user id.

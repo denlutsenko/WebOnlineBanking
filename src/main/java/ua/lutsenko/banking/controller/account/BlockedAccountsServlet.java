@@ -25,19 +25,24 @@ public class BlockedAccountsServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
     private final Logger LOG = Logger.getLogger(BlockedAccountsServlet.class);
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         Command command = CommandFactory.getInstance().getCommand(request);
         wrapper = new RequestWrapper(request);
         try {
             wrapper.extractParamValues();
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            LOG.error("DBError",  e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/blockedAccounts");
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         wrapper.insertAttributes();
         request.getRequestDispatcher(path).forward(request, response);
     }

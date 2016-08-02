@@ -6,7 +6,7 @@ import java.sql.Date;
  * Created by Denis Lutsenko.
  */
 public class Condition {
-    private int id;
+    private Integer id;
 
     private final Account account;
     private final String type;
@@ -14,17 +14,16 @@ public class Condition {
     private double percentOfWithdrawal;
     private double monthlyPercent;
 
-
     public Condition(Account account, String type) {
         this.account = account;
         this.type = type;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

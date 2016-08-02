@@ -39,7 +39,6 @@
         <servlet-class>ua.lutsenko.banking.controller.user.RegistrationServlet</servlet-class>
     </servlet>
 
-
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/bank24/welcome</url-pattern>
@@ -103,8 +102,6 @@
     </servlet-mapping>
 
 
-
-
     <servlet>
         <servlet-name>AddressFormServlet</servlet-name>
         <servlet-class>ua.lutsenko.banking.controller.user.AddressServlet</servlet-class>
@@ -150,7 +147,6 @@
     </servlet-mapping>
 
 
-
     <servlet>
         <servlet-name>NewApplicationsServlet</servlet-name>
         <servlet-class>ua.lutsenko.banking.controller.account.ApplicationsServlet</servlet-class>
@@ -174,14 +170,10 @@
         <url-pattern>/bank24/personalCabinet/success</url-pattern>
     </servlet-mapping>
 
-
-
-
     <servlet>
         <servlet-name>CreateNewAccountServlet</servlet-name>
         <servlet-class>ua.lutsenko.banking.controller.account.NewAccountServlet</servlet-class>
     </servlet>
-
 
     <servlet-mapping>
         <servlet-name>CreateNewAccountServlet</servlet-name>
@@ -198,19 +190,6 @@
         <servlet-name>LogOutServlet</servlet-name>
         <url-pattern>/welcomePage</url-pattern>
     </servlet-mapping>
-
-
-    <!-- <servlet>
-         <servlet-name>ChangeLanguageServlet</servlet-name>
-         <servlet-class>ua.lutsenko.banking.controller.ChangeLanguageServlet</servlet-class>
-     </servlet>
-
-
-     <servlet-mapping>
-         <servlet-name>ChangeLanguageServlet</servlet-name>
-         <url-pattern>/</url-pattern>
-     </servlet-mapping>-->
-
 
     <!--DB Connection start-->
     <resource-ref>

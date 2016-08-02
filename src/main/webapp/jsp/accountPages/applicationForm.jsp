@@ -13,13 +13,21 @@
     <form action="<c:url value="/bank24/managements"/>" method="post">
 
         <fmt:message key="SPECIFY_TYPE_OF_ACCOUNT"/>
-        <input type="text" class="form-control" name="accountType" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_ACCOUNT_TYPE"/>)" oninput="setCustomValidity('')" pattern="CREDIT|DEBIT" value=""/>
+        <input type="text" class="form-control" name="accountType" required
+               oninvalid="this.setCustomValidity(<fmt:message key="HINT_ACCOUNT_TYPE"/>)"
+               oninput="setCustomValidity('')"
+               pattern="CREDIT|DEBIT" value=""/>
 
         <fmt:message key="SPECIFY_CURRENCY"/>
-        <input type="text" class="form-control" name="accountCurrency" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_CURRENCY"/>)" oninput="setCustomValidity('')" pattern="(USD|EUR|UAH)" value=""/>
+        <input type="text" class="form-control" name="accountCurrency" required
+               oninvalid="this.setCustomValidity(<fmt:message key="HINT_CURRENCY"/>)" oninput="setCustomValidity('')"
+               pattern="(USD|EUR|UAH)" value=""/>
 
         <fmt:message key="INITIAL_BALANCE"/>
-        <input type="text" class="form-control" name="accountBalance" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)" oninput="setCustomValidity('')" pattern="[\d]+[\.]?[\d]{1,2}?" value=""/>
+        <input type="text" class="form-control" name="accountBalance" required
+               oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
+               oninput="setCustomValidity('')"
+               pattern="[\d]+[\.]?[\d]{1,2}?" value=""/>
 
 
         <input type="hidden" name="ok" value="saveNewApplication"/>

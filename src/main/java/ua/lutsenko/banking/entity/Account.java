@@ -11,7 +11,6 @@ public class Account {
     private final String accountCode;
     private final String currency;
 
-
     private Date openingDate;
     private double currentBalance;
     private double defaultBalance;

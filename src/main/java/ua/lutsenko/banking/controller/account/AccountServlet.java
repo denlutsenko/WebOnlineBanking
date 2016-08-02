@@ -1,11 +1,9 @@
 package ua.lutsenko.banking.controller.account;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.CommandFactory;
 import ua.lutsenko.banking.command.RequestWrapper;
-
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

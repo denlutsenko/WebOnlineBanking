@@ -6,7 +6,6 @@ import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.CommandFactory;
 import ua.lutsenko.banking.command.RequestWrapper;
 
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +24,23 @@ public class AllAccountsServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
     private static final Logger LOG = Logger.getLogger(AllAccountsServlet.class);
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         wrapper = new RequestWrapper(request);
         Command command = CommandFactory.getInstance().getCommand(request);
         try {
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            LOG.error("DBError"+ e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/allActiveAccounts");
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         wrapper.insertAttributes();
         request.getRequestDispatcher(path).forward(request, response);
     }

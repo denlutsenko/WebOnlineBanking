@@ -17,6 +17,7 @@ import java.sql.SQLException;
 /**
  * Created by Denis Lutsenko.
  */
+
 /**
  * This servlet accepts data from request and call account commands.
  */
@@ -25,6 +26,7 @@ public class PaymentOperationServlet extends HttpServlet {
     private String path;
     private static final Logger LOG = Logger.getLogger(PaymentOperationServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper = new RequestWrapper(request);
@@ -41,13 +43,14 @@ public class PaymentOperationServlet extends HttpServlet {
             path = command.execute(wrapper);
             System.out.println(path);
         } catch (SQLException e) {
-            LOG.error("DBError" + e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/PaymentOperations");
 
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper.insertAttributes();

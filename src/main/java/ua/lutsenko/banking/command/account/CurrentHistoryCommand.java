@@ -1,8 +1,5 @@
 package ua.lutsenko.banking.command.account;
 
-
-
-
 import ua.lutsenko.banking.businesslogic.AccountService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
@@ -11,7 +8,6 @@ import ua.lutsenko.banking.entity.Operation;
 
 import java.sql.SQLException;
 import java.util.List;
-
 
 /**
  * Created by Denis Lutsenko.

@@ -26,6 +26,7 @@ public class RefillBalanceServlet extends HttpServlet {
     private String path;
     private static final Logger LOG = Logger.getLogger(PaymentOperationServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper = new RequestWrapper(request);
@@ -34,11 +35,12 @@ public class RefillBalanceServlet extends HttpServlet {
             wrapper.extractParamValues();
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            LOG.error("DBError" + e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/managements/refillBalance");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper.insertAttributes();

@@ -19,7 +19,8 @@
 
 <form action="<c:url value="/bank24/managements"/>" method="post">
     <fmt:message key="ENTER_CARD_NUMBER"/>
-    <input type="text" name="cardNumber" required  oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)" oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>
+    <input type="text" name="cardNumber" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
+           oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>
     <input type="hidden" name="ok" value="confirmLocking"/>
     <input type="submit" name="ok" value=<fmt:message key="LOCK_ACCOUNT"/>>
 </form>
@@ -37,7 +38,7 @@
 
     <c:forEach items="${requestScope.activeAccounts}" var="accountElem">
         <tr>
-            <form action="handler" method="post">
+            <form method="post">
 
                 <td>
                         ${accountElem.type}
@@ -56,7 +57,6 @@
                 </td>
             </form>
         </tr>
-
     </c:forEach>
 </table
 </body>

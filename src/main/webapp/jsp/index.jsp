@@ -10,10 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-
-
-
 <html>
 <head>
   <title><fmt:message key="LOGIN"/></title>
@@ -21,9 +17,6 @@
 
 </head>
 <body>
-
-
-
 
 <div>
   <form name="checkLogin" action="<c:url value="/bank24/personalCabinet"/>"  method="post">

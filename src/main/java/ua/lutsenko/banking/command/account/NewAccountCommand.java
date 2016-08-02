@@ -1,11 +1,8 @@
 package ua.lutsenko.banking.command.account;
 
-
-
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
 
-import java.sql.SQLException;
 
 /**
  * Created by Denis Lutsenko.

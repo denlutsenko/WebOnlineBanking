@@ -12,15 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-personal page
-${sessionScope.user}
-${sessionScope.user.firstName}
-${sessionScope.user.lastName}
-${sessionScope.user.middleName}
-${sessionScope.user.phoneNumber}
-
-${sessionScope.user.password}
-${sessionScope.user.email}
 
 </body>
 </html>

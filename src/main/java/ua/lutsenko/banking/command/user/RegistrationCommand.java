@@ -1,7 +1,5 @@
 package ua.lutsenko.banking.command.user;
 
-
-
 import ua.lutsenko.banking.businesslogic.UserService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
@@ -11,7 +9,6 @@ import java.sql.SQLException;
 /**
  * Created by Denis Lutsenko.
  */
-
 
 public class RegistrationCommand implements Command {
     /**

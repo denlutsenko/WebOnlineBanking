@@ -19,13 +19,22 @@
 <form action="/bank24/managements/openingNewAccount/addressForm" method="post">
 
     <fmt:message key="INPUT_COUNTRY"/>
-    <br/> <input type="text" name="country" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_COUNTRY"/>)" oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
+    <br/> <input type="text" name="country" required
+                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_COUNTRY"/>)"
+                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
     <fmt:message key="INPUT_CITY"/>
-    <br/> <input type="text" name="city" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_CITY"/>)" oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
+
+    <br/> <input type="text" name="city" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_CITY"/>)"
+                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
     <fmt:message key="INPUT_STREET"/>
-    <br/><input type="text" name="street" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_STREET"/>)" oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
+
+    <br/><input type="text" name="street" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_STREET"/>)"
+                oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
     <fmt:message key="INPUT_NUMBERS"/>
-    <br/><input type="text" name="houseNumber" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_HOUSE_NUMBER"/>)" oninput="setCustomValidity('')" value=""/>
+
+    <br/><input type="text" name="houseNumber" required
+                oninvalid="this.setCustomValidity(<fmt:message key="HINT_HOUSE_NUMBER"/>)"
+                oninput="setCustomValidity('')" value=""/>
 
     <input type="hidden" name="ok" value="newAddress"/>
     <input type="submit" name="ok" value=<fmt:message key="BTN_NEXT"/>>

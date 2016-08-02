@@ -32,7 +32,9 @@
 
 <div>
     <form action="<c:url value="/bank24/personalCabinet"/>" method="post">
-        <input type="text" name="cardNumber" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)" oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/><br/>
+        <input type="text" name="cardNumber" required
+               oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
+               oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/><br/>
         <input type="hidden" name="ok" value="unlockAccount"/>
         <input type="submit" name="ok" value=<fmt:message key="BTN_UNLOCK_ACCOUNT"/>>
     </form>

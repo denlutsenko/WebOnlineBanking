@@ -20,8 +20,8 @@ import java.util.ResourceBundle;
  */
 public class AddressDao {
     private DataSource ds;
-    private static final Logger logger = Logger.getLogger(AddressDao.class);
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
+    private static final Logger LOG = Logger.getLogger(AddressDao.class);
+    private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("sqlstatements");
 
     AddressDao(DataSource ds) {
         this.ds = ds;
@@ -35,12 +35,12 @@ public class AddressDao {
      */
     public boolean isAddressExist(int userId) {
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("IS_ADDRESS_EXIST"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("IS_ADDRESS_EXIST"));
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            logger.error("SQL error ", e);
+            LOG.error("SQL error ", e);
             return false;
         }
     }
@@ -53,7 +53,7 @@ public class AddressDao {
      */
     public boolean insertAddress(int userId, String country, String city, String street, String houseNumber) {
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("INSERT_ADDRESS"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_ADDRESS"));
             ps.setInt(1, userId);
             ps.setString(2, country);
             ps.setString(3, city);
@@ -62,7 +62,7 @@ public class AddressDao {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            logger.error("SQL error, ", e);
+            LOG.error("SQL error, ", e);
             return false;
         }
     }

@@ -4,23 +4,22 @@ package ua.lutsenko.banking.entity;
  * Created by Denis Lutsenko.
  */
 public class Address {
-    private int id;
+    private Integer id;
     private final User user;
     private String country;
     private String city;
     private String street;
     private String number;
 
-
     public Address(User user) {
         this.user = user;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

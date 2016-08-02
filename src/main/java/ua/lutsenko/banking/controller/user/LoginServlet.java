@@ -25,7 +25,7 @@ import java.sql.SQLException;
 public class LoginServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
-    private static final Logger logger = Logger.getLogger(LoginServlet.class);
+    private static final Logger LOG = Logger.getLogger(LoginServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
         try {
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            logger.error("DBError", e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/personalCabinet");
     }

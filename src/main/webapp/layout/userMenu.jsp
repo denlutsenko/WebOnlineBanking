@@ -10,8 +10,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
-
 <html>
 <head>
     <link href=" <c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">

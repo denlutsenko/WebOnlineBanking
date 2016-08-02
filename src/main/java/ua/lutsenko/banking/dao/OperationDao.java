@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.entity.Account;
 import ua.lutsenko.banking.entity.Operation;
@@ -29,7 +28,6 @@ public class OperationDao {
     OperationDao(DataSource ds) {
         this.ds = ds;
     }
-
 
     /**
      * This method makes history list of current account.
@@ -90,5 +88,4 @@ public class OperationDao {
             return false;
         }
     }
-
 }

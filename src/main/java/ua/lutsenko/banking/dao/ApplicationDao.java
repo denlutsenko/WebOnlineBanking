@@ -33,11 +33,12 @@ public class ApplicationDao {
 
     /**
      * This method inserts new application.
-     * @parameters contains all necessary data to insert new application.
+     *
      * @return application object.
+     * @parameters contains all necessary data to insert new application.
      */
     public boolean insertApplication(int userId, String accountType, String accountCurrency, Date currDate,
-                                     double accountBalance, String accountStatus){
+                                     double accountBalance, String accountStatus) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_APPLICATION"));
             ps.setInt(1, userId);
@@ -55,8 +56,10 @@ public class ApplicationDao {
         }
 
     }
+
     /**
      * This method gets all application list from table.
+     *
      * @return list of application.
      */
     public List<Application> getApplications() {
@@ -93,25 +96,27 @@ public class ApplicationDao {
 
     /**
      * This method updates status of selected application.
-     * @param id contain id of selected application.
+     *
+     * @param id     contain id of selected application.
      * @param status contain new value of status.
      * @return boolean flag.
      */
-    public boolean updateApplicationStatus(int id, String status){
-        try(Connection conn = ds.getConnection()){
+    public boolean updateApplicationStatus(int id, String status) {
+        try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("UPDATE_STATUS"));
             ps.setString(1, status);
             ps.setInt(2, id);
-           ps.executeUpdate();
+            ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-           LOG.error(" Can't update application status", e);
+            LOG.error(" Can't update application status", e);
             return false;
         }
     }
 
     /**
      * This method deletes  selected application.
+     *
      * @param applicationId contain application id.
      * @return boolean flag.
      */

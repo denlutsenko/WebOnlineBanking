@@ -41,31 +41,41 @@
         <tr>
             <td><fmt:message key="ACCOUNT_CODE"/></td>
             <td>
-                <input type="text" name="accountCode" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)" oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>
+                <input type="text" name="accountCode" required
+                       oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
+                       oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>
             </td>
         </tr>
         <tr>
             <td><fmt:message key="ACCOUNT_TYPE"/></td>
             <td>
-                <input type="text" name="accountType" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_INSERT_TYPE"/>)" oninput="setCustomValidity('')" pattern="CREDIT|DEBIT" value=""/>
+                <input type="text" name="accountType" required
+                       oninvalid="this.setCustomValidity(<fmt:message key="HINT_INSERT_TYPE"/>)"
+                       oninput="setCustomValidity('')" pattern="CREDIT|DEBIT" value=""/>
             </td>
         </tr>
         <tr>
             <td><fmt:message key="WITHDRAWAL_PERCENT"/></td>
             <td>
-                <input type="text" name="accountWPercent" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WITHDRAWAL_PERCENT"/>)" oninput="setCustomValidity('')" pattern="[\d]{1,2}[.]?[\d]{1,2}" value=""/>
+                <input type="text" name="accountWPercent" required
+                       oninvalid="this.setCustomValidity(<fmt:message key="HINT_WITHDRAWAL_PERCENT"/>)"
+                       oninput="setCustomValidity('')" pattern="[\d]{1,2}[.]?[\d]{1,2}" value=""/>
             </td>
         </tr>
         <tr>
             <td><fmt:message key="MONTHLY_PERCENT"/>,%</td>
             <td>
-                <input type="text" name="monthlyPercent" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_MONTHLY_PERCENT"/>)" oninput="setCustomValidity('')" pattern="[\d]{1,2}[.]?[\d]{1,2}" value=""/>
+                <input type="text" name="monthlyPercent" required
+                       oninvalid="this.setCustomValidity(<fmt:message key="HINT_MONTHLY_PERCENT"/>)"
+                       oninput="setCustomValidity('')" pattern="[\d]{1,2}[.]?[\d]{1,2}" value=""/>
             </td>
         </tr>
         <tr>
             <td><fmt:message key="CARD_DEADLINE"/></td>
             <td>
-                <input type="text" name="accountDeadline" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_DEADLINE"/>)" oninput="setCustomValidity('')" pattern="[\d]{4}[-]{1}[\d]{2}[-]{1}[\d]{2}" value=""/>
+                <input type="text" name="accountDeadline" required
+                       oninvalid="this.setCustomValidity(<fmt:message key="HINT_DEADLINE"/>)"
+                       oninput="setCustomValidity('')" pattern="[\d]{4}[-]{1}[\d]{2}[-]{1}[\d]{2}" value=""/>
             </td>
         </tr>
     </table>

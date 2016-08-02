@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.tag;
 
-
 import ua.lutsenko.banking.entity.Condition;
 
 import javax.servlet.jsp.JspException;

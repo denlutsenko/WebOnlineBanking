@@ -24,7 +24,10 @@ public class ManagementServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
     private static final Logger LOG = Logger.getLogger(ManagementServlet.class);
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         wrapper = new RequestWrapper(request);
         wrapper.addParameter("currCardId", request.getParameter("currCardId"));
         wrapper.addParameter("operationType", request.getParameter("operationType"));
@@ -37,14 +40,14 @@ public class ManagementServlet extends HttpServlet {
             wrapper.extractParamValues();
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            LOG.error("DBError" + e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/managements");
-
-
     }
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
+            IOException {
         wrapper.insertAttributes();
         request.getRequestDispatcher(path).forward(request, response);
 

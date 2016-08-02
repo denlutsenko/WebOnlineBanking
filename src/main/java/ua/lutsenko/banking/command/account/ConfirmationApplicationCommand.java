@@ -6,14 +6,10 @@ import ua.lutsenko.banking.businesslogic.AccountService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
 
-import java.sql.SQLException;
-
 /**
  * Created by Denis Lutsenko.
  */
 public class ConfirmationApplicationCommand implements Command {
-    private static final Logger LOG = Logger.getLogger(ConfirmationApplicationCommand.class);
-
     /**
      * This method receives all necessary data and approve opening new account for client.
      *

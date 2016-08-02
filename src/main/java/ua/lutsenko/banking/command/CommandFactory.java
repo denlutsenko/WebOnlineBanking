@@ -49,10 +49,10 @@ public class CommandFactory {
     }
 
     /**
-     * This method get Command by parameter value
+     * This method get Command by parameter value.
      *
-     * @param request
-     * @return return  choose commandMap by value
+     * @param request contain HttpServletRequest.
+     * @return return  choose commandMap by value.
      */
     public Command getCommand(HttpServletRequest request) {
         String value = request.getParameter("ok");

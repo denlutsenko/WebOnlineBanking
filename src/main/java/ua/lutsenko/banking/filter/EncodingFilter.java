@@ -2,7 +2,6 @@ package ua.lutsenko.banking.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-
 /**
  * Created by Denis Lutsenko.
  */

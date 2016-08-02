@@ -19,6 +19,7 @@ import java.io.IOException;
 public class LogOutServlet extends HttpServlet {
     private String path;
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         request.getSession(true).invalidate();
@@ -26,6 +27,7 @@ public class LogOutServlet extends HttpServlet {
         response.sendRedirect("/welcomePage");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         request.getRequestDispatcher(path).forward(request, response);

@@ -1,12 +1,8 @@
 package ua.lutsenko.banking.businesslogic;
 
-
-
 import ua.lutsenko.banking.command.RequestWrapper;
 import ua.lutsenko.banking.dao.DaoFactory;
 import ua.lutsenko.banking.entity.User;
-
-import java.sql.SQLException;
 
 /**
  * Created by Denis Lutsenko.
@@ -22,14 +18,19 @@ public class UserService {
 
     public boolean exist() {
         return daoFactory.getUserDao().exist(wrapper.findParameterByName("email"),
-                                              wrapper.findParameterByName("password"));
+                wrapper.findParameterByName("password"));
     }
 
     public User getUserData() {
         return daoFactory.getUserDao().getUserData(wrapper.findParameterByName("email"),
-                                                    wrapper.findParameterByName("password"));
+                wrapper.findParameterByName("password"));
     }
 
+    /**
+     * This method inserts new user.
+     *
+     * @return return boolean flag.
+     */
     public boolean insertUser() {
         String firstName = wrapper.findParameterByName("firstName");
         String lastName = wrapper.findParameterByName("lastName");
@@ -40,6 +41,11 @@ public class UserService {
         return daoFactory.getUserDao().insert(firstName, lastName, middleName, phone, email, password);
     }
 
+    /**
+     * This method inserts client address.
+     *
+     * @return boolean flag.
+     */
     public boolean insertAddress() {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         String country = wrapper.findParameterByName("country");

@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.command;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
@@ -60,7 +59,6 @@ public class RequestWrapper {
             request.setAttribute(mm.getKey(), mm.getValue());
         }
     }
-
 
     /**
      * This method finds parameter by attribute name.

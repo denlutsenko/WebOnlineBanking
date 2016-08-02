@@ -62,7 +62,6 @@ public class AccountDao {
             psInsertOp.setTimestamp(3, currDate);
             psInsertOp.setDouble(4, operationSumm);
             psInsertOp.execute();
-
             return true;
         } catch (SQLException e) {
             LOG.error("DB withdrawal error", e);
@@ -134,7 +133,6 @@ public class AccountDao {
             LOG.error("SQL error, ", e);
             return null;
         }
-
     }
 
     /**
@@ -255,6 +253,7 @@ public class AccountDao {
 
     /**
      * This method gets current account ID.
+     *
      * @param accountCode contain account code.
      * @return account code.
      */

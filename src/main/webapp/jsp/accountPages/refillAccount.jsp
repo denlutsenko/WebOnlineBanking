@@ -18,18 +18,22 @@
 </head>
 <body>
 
-
 <div align="center">
     <form action="<c:url value="/bank24/managements"/>" method="post">
 
-        <select name="currCardId" class="chargeCard" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)" oninput="setCustomValidity('')">
+        <select name="currCardId" class="chargeCard" required
+                oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
+                oninput="setCustomValidity('')">
             <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
             <c:forEach items="${requestScope.accountList}" var="accountElem">
-                <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode} ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
+                <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode}
+                        ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
             </c:forEach>
         </select><br><br>
         <input type="hidden" name="operationType" value="Пополнение средств">
-        <input type="text" class="form-control" name="operationSumm" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)" oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?" value="amount"/><br/>
+        <input type="text" class="form-control" name="operationSumm" required
+               oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
+               oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?" value="amount"/><br/>
         <input type="hidden" name="ok" value="confirmPayment"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="REFILL_ACCOUNT"/>>
     </form>

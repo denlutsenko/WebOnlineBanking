@@ -24,8 +24,9 @@ import java.sql.SQLException;
 public class RegistrationServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
-    private static final Logger logger = Logger.getLogger(RegistrationServlet.class);
+    private static final Logger LOG = Logger.getLogger(RegistrationServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper = new RequestWrapper(request);
@@ -39,13 +40,13 @@ public class RegistrationServlet extends HttpServlet {
         Command command = CommandFactory.getInstance().getCommand(request);
         try {
             path = command.execute(wrapper);
-
         } catch (SQLException e) {
-            logger.error("DBError" + e);
+            LOG.error("DBError ", e);
         }
         response.sendRedirect("/bank24/welcome");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper.insertAttributes();

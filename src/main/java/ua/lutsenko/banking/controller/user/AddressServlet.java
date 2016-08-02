@@ -24,8 +24,9 @@ import java.sql.SQLException;
 public class AddressServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
-    private static final Logger logger = Logger.getLogger(AddressServlet.class);
+    private static final Logger LOG = Logger.getLogger(AddressServlet.class);
 
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         Command command = CommandFactory.getInstance().getCommand(request);
@@ -38,11 +39,12 @@ public class AddressServlet extends HttpServlet {
             wrapper.extractParamValues();
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            logger.error("DBError" + e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/managements/openingNewAccount/addressForm");
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         wrapper.insertAttributes();

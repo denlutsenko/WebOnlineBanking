@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.command.account;
 
-
 import ua.lutsenko.banking.businesslogic.AccountService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
@@ -10,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by Denis Lutsenko on 7/26/2016.
+ * Created by Denis Lutsenko.
  */
 public class RefillBalanceCommand implements Command {
     /**

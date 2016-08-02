@@ -14,27 +14,29 @@
 <html>
 <head>
     <title></title>
-  <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
+    <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 
 
 <form action="<c:url value="/bank24/currentOperationsHistory"/>" method="POST">
-  <select name="idCard" class="chargeCard" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)" oninput="setCustomValidity('')">
-    <option  disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
-    <c:forEach items="${requestScope.accountList}" var="accountElem">
-      <option value="${accountElem.account.id}">
-      ${accountElem.type}
-      ${accountElem.account.accountCode}
-      ${accountElem.account.currentBalance}
-      ${accountElem.account.currency}
-      </option>
-    </c:forEach>
-  </select>
+    <select name="idCard" class="chargeCard" required
+            oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
+            oninput="setCustomValidity('')">
+        <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
+        <c:forEach items="${requestScope.accountList}" var="accountElem">
+            <option value="${accountElem.account.id}">
+                    ${accountElem.type}
+                    ${accountElem.account.accountCode}
+                    ${accountElem.account.currentBalance}
+                    ${accountElem.account.currency}
+            </option>
+        </c:forEach>
+    </select>
 
-  <input type="hidden" name="ok" value="currentHistory"/>
-  <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REFRESH"/>>
-  </form>
+    <input type="hidden" name="ok" value="currentHistory"/>
+    <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REFRESH"/>>
+</form>
 
 </body>
 </html>
