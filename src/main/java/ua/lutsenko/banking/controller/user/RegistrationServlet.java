@@ -15,9 +15,12 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 
+/**
+ * This servlet accepts user data from request and call user commands.
+ */
 public class RegistrationServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;

@@ -9,21 +9,23 @@ import ua.lutsenko.banking.command.RequestWrapper;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
  */
 public class ConfirmationApplicationCommand implements Command {
-    private static final Logger logger = Logger.getLogger(ConfirmationApplicationCommand.class);
+    private static final Logger LOG = Logger.getLogger(ConfirmationApplicationCommand.class);
 
+    /**
+     * This method receives all necessary data and approve opening new account for client.
+     *
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     */
     @Override
-    public String execute(RequestWrapper wrapper) throws SQLException {
+    public String execute(RequestWrapper wrapper) {
         AccountService accountService = new AccountService(wrapper);
-
-        try {
-            accountService.insertApplication();
-
+        if (accountService.insertApplication()) {
             return "/jsp/userPages/personalCabinet.jsp";
-        } catch (SQLException e) {
-            logger.error("DB error", e);
+        } else {
             return "/jsp/reportPages/error.jsp";
         }
     }

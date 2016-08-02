@@ -4,7 +4,11 @@ import java.io.IOException;
 
 
 /**
- * Created by Denis Lutsenko on 5/21/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This class checks encoding and set it to UTF-8 format.
  */
 public class EncodingFilter implements Filter {
     private String encoding;

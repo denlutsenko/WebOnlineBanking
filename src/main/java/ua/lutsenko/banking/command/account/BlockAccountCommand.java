@@ -11,11 +11,17 @@ import java.util.List;
 
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
  */
 public class BlockAccountCommand implements Command {
+
+    /**
+     * This method responsible for locking account of user.
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     */
     @Override
-    public String execute(RequestWrapper wrapper) throws SQLException {
+    public String execute(RequestWrapper wrapper){
         AccountService accountService = new AccountService(wrapper);
         List<Condition> activeAccounts = accountService.showActiveAccounts();
         if (activeAccounts != null) {

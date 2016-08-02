@@ -15,7 +15,7 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 public class AccountService {
 
@@ -42,7 +42,7 @@ public class AccountService {
         return daoFactory.getConditionDao().showActiveAccounts(userId);
     }
 
-    public List<Operation> showAccountHistory() throws SQLException {
+    public List<Operation> showAccountHistory() {
         String currIdcard = wrapper.findParameterByName("idCard");
         int currCardId = Integer.parseInt(currIdcard);
         return daoFactory.getOperationDao().showAccountHistory(currCardId);
@@ -71,7 +71,7 @@ public class AccountService {
 
         Calendar cal = Calendar.getInstance();
         Timestamp currDate = new Timestamp(cal.getTimeInMillis());
-        int idFromCard = Integer.parseInt(fromCard);//+++
+        int idFromCard = Integer.parseInt(fromCard);
         int idToCard = Integer.parseInt(toCard);
         double operationSumm = Double.parseDouble(opSumm);
 
@@ -84,23 +84,18 @@ public class AccountService {
         // calculating new summ. Add to cardTo.
         double summTo = conversion.getCurrencyConverter(currencyFrom, currencyTo, operationSumm);
 
-        // operationTo.setOperationSum(summTo);
-
         // calculating new sum, including withdrawl percent.
         double newSummFrom = conversion.calculateWithdrawalPercent(operationSumm, withdrawalPercent);
-        //operationFrom.setOperationSum(newSummFrom);
-
-
         return daoFactory.getAccountDao().doInnerTransfer(idFromCard, operationType, currDate, newSummFrom, idToCard,
                 summTo);
     }
 
-    public boolean isAddressExist() throws SQLException {
+    public boolean isAddressExist() {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         return daoFactory.getAddressDao().isAddressExist(userId);
     }
 
-    public boolean insertApplication() throws SQLException {
+    public boolean insertApplication(){
         final String accountStatus = "PENDING";
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         String accountType = wrapper.findParameterByName("accountType");
@@ -111,13 +106,12 @@ public class AccountService {
                 accountBalance, accountStatus);
     }
 
-    public boolean blockAccount() throws SQLException {
+    public boolean blockAccount(){
         String cardNumber = wrapper.findParameterByName("cardNumber");
         return daoFactory.getAccountDao().blockAccount(cardNumber);
     }
 
     public boolean updateBalance() throws SQLException {
-
         String currCardId = wrapper.findParameterByName("currCardId");
         String operationType = wrapper.findParameterByName("operationType");
         String operationSumm = wrapper.findParameterByName("operationSumm");
@@ -128,28 +122,26 @@ public class AccountService {
         return daoFactory.getAccountDao().updateBalance(cardId, operationType, currDate, opSumm);
     }
 
-    public List<Account> showBlockedAccounts() throws SQLException {
+    public List<Account> showBlockedAccounts() {
         return daoFactory.getAccountDao().showBlockedAccounts();
     }
 
-    public boolean unblockAccount() throws SQLException {
+    public boolean unblockAccount(){
         String accountCode = wrapper.findParameterByName("cardNumber");
         return daoFactory.getAccountDao().unblockAccount(accountCode);
     }
 
-    public List<Application> getApplications() throws SQLException {
+    public List<Application> getApplications(){
         return daoFactory.getApplicationDao().getApplications();
     }
 
 
-    public boolean createAccount() throws SQLException {
+    public boolean createAccount(){
         int userId = Integer.parseInt((String) wrapper.findSessionAttrByName("userId"));
         String currency = (String) wrapper.findSessionAttrByName("currency");
         double balance = Double.parseDouble((String) wrapper.findSessionAttrByName("balance"));
         String accountCode = wrapper.findParameterByName("accountCode");
         Date currDate = Date.valueOf(java.time.LocalDate.now());
-
-
         return daoFactory.getAccountDao().createAccount(userId, accountCode, currDate, currency, balance);
     }
 
@@ -164,7 +156,7 @@ public class AccountService {
                 accountDeadline, type);
     }
 
-    private int getAccountId(String accountCode) throws SQLException {
+    private int getAccountId(String accountCode){
         return daoFactory.getAccountDao().getAccountId(accountCode);
     }
 
@@ -173,7 +165,7 @@ public class AccountService {
        return  daoFactory.getApplicationDao().updateApplicationStatus(id, status);
     }
 
-    public boolean deleteApplication() throws SQLException {
+    public boolean deleteApplication(){
         int id = Integer.parseInt(wrapper.findParameterByName("applicationId"));
         return daoFactory.getApplicationDao().deleteApplication(id);
     }

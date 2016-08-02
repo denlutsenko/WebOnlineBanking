@@ -13,6 +13,13 @@ import java.util.List;
  * Created by Denis Lutsenko on 7/26/2016.
  */
 public class RefillBalanceCommand implements Command {
+    /**
+     * This method responsible for refilling balance of current account.
+     *
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     * @throws SQLException
+     */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
         AccountService accountService = new AccountService(wrapper);

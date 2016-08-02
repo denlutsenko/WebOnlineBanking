@@ -10,9 +10,15 @@ import ua.lutsenko.banking.entity.User;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
  */
 public class ManagementCommand implements Command {
+    /**
+     * This method check user address and redirects to management page.
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     * @throws SQLException
+     */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
         AccountService accountService = new AccountService(wrapper);

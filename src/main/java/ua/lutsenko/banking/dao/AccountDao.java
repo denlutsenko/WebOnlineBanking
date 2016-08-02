@@ -13,7 +13,20 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by Denis Lutsenko on 7/30/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * * This class works with DataBase queries(Account table) and makes next operations:
+ * - do payment.
+ * - doInnerTransfer.
+ * - getCardCurrency.
+ * - updateBalance.
+ * - blockAccount.
+ * - unblockAccount.
+ * - createAccount.
+ * - getAccountId.
+ * - showBlockedAccounts.
  */
 public class AccountDao {
     private DataSource ds;
@@ -25,7 +38,13 @@ public class AccountDao {
         this.ds = ds;
     }
 
-
+    /**
+     * This method makes some payment.
+     *
+     * @return boolean flag.
+     * @throws SQLException
+     * @parameters contains necessary information of card info and payment type.
+     */
     public boolean doPayment(int idCard, String operationType, Timestamp currDate, double operationSumm)
             throws SQLException {
         Connection conn = ds.getConnection();
@@ -55,7 +74,14 @@ public class AccountDao {
         }
     }
 
-
+    /**
+     * Transaction method.
+     * This method makes inner transfer between cards. Also saves operations to history table.
+     *
+     * @return boolean flag.
+     * @throws SQLException
+     * @parameters contains necessary information of the first card.
+     */
     public boolean doInnerTransfer(int idFromCard, String operationType, Timestamp currDate, double newSummFrom, int
             idToCard, double summTo) throws SQLException {
         Connection conn = ds.getConnection();
@@ -88,8 +114,13 @@ public class AccountDao {
         }
     }
 
-
-    public String getCardCurrency(int cardId) throws SQLException {
+    /**
+     * This method gets card currency  by card id.
+     *
+     * @param cardId parameter contains selected card id.
+     * @return card currency.
+     */
+    public String getCardCurrency(int cardId) {
         String currency = null;
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("GET_CARD_ID"));
@@ -100,22 +131,27 @@ public class AccountDao {
             }
             return currency;
         } catch (SQLException e) {
-            LOG.error("SQL error, " + e);
+            LOG.error("SQL error, ", e);
             return null;
         }
 
     }
 
-
+    /**
+     * Transaction method.
+     * This method updates balance of selected account and save info of payment to history table.
+     *
+     * @return boolean flag.
+     * @throws SQLException
+     * @parameters contains inputted operation sum.
+     */
     public boolean updateBalance(int cardId, String operationType, Timestamp date, double opSumm) throws SQLException {
         operation = new OperationDao(ds);
         Connection conn = ds.getConnection();
         conn.setAutoCommit(false);
         try {
             PreparedStatement psAccount = conn.prepareStatement(RESOURCE_BUNDLE.getString("REFILL_BALANCE"));
-            System.out.println(opSumm + "   opSumm 111111111111111111111");
             psAccount.setDouble(1, opSumm);
-            System.out.println(cardId + " cardId  22222222222222");
             psAccount.setInt(2, cardId);
             psAccount.executeUpdate();
             operation.insertOperation(conn, cardId, operationType, date, opSumm);
@@ -130,8 +166,13 @@ public class AccountDao {
         }
     }
 
-
-    public boolean blockAccount(String cardNumber) throws SQLException {
+    /**
+     * This method blocks account by card number.
+     *
+     * @param cardNumber contain card number.
+     * @return boolean flag.
+     */
+    public boolean blockAccount(String cardNumber) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("BLOCK_CARD"));
             ps.setString(1, cardNumber);
@@ -142,7 +183,12 @@ public class AccountDao {
         }
     }
 
-    public List<Account> showBlockedAccounts() throws SQLException {
+    /**
+     * This method builds list of blocked accounts.
+     *
+     * @return list of blocked accounts.
+     */
+    public List<Account> showBlockedAccounts() {
         List<Account> blockedAccounts = new ArrayList<>();
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_BLOCKED_ACCOUNTS"));
@@ -167,21 +213,30 @@ public class AccountDao {
         }
     }
 
-
-    public boolean unblockAccount(String accountCode) throws SQLException {
+    /**
+     * This method unblocks account by accountCode.
+     *
+     * @param accountCode contain account code.
+     * @return boolean flag.
+     */
+    public boolean unblockAccount(String accountCode) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("UNBLOCK_CARD"));
             ps.setString(1, accountCode);
             return ps.executeUpdate() == 1;
         } catch (SQLException e) {
-            LOG.error("SQL exception, " + e);
+            LOG.error("SQL exception, ", e);
             return false;
         }
     }
 
-
-    public boolean createAccount(int userId, String accountCode, Date currDate, String currency, double
-            balance) throws SQLException {
+    /**
+     * This method creates new account.
+     *
+     * @return boolean flag.
+     * @parameters contains all necessary information to create new account.
+     */
+    public boolean createAccount(int userId, String accountCode, Date currDate, String currency, double balance) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement psAcc = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_ACCOUNT"));
             psAcc.setInt(1, userId);
@@ -198,9 +253,12 @@ public class AccountDao {
         }
     }
 
-
-
-    public int getAccountId(String accountCode) throws SQLException {
+    /**
+     * This method gets current account ID.
+     * @param accountCode contain account code.
+     * @return account code.
+     */
+    public int getAccountId(String accountCode) {
         int cardId = 0;
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_CARD_ID"));
@@ -211,18 +269,8 @@ public class AccountDao {
             }
             return cardId;
         } catch (SQLException e) {
-            LOG.error("SQL error, " + e);
+            LOG.error("SQL error ", e);
             return 0;
         }
     }
-
-//    private int getLastInsertId() throws SQLException {
-//        Connection conn = ds.getConnection();
-//        try (Statement statement = conn.createStatement()) {
-//            try (ResultSet resultSet = statement.executeQuery("SELECT LAST_INSERT_ID()")) {
-//                return resultSet.getInt(1);
-//            }
-//        }
-//    }
-
 }

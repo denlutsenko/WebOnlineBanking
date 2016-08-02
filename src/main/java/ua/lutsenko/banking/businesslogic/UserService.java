@@ -9,7 +9,7 @@ import ua.lutsenko.banking.entity.User;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 7/24/2016.
+ * Created by Denis Lutsenko.
  */
 public class UserService {
     private RequestWrapper wrapper;
@@ -40,15 +40,12 @@ public class UserService {
         return daoFactory.getUserDao().insert(firstName, lastName, middleName, phone, email, password);
     }
 
-    public boolean insertAddress() throws SQLException {
-
+    public boolean insertAddress() {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
-
         String country = wrapper.findParameterByName("country");
         String city = wrapper.findParameterByName("city");
         String street = wrapper.findParameterByName("street");
         String houseNumber = wrapper.findParameterByName("houseNumber");
-
         return daoFactory.getAddressDao().insertAddress(userId, country, city, street, houseNumber);
     }
 }

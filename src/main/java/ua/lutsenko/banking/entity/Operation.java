@@ -3,7 +3,7 @@ package ua.lutsenko.banking.entity;
 import java.sql.Timestamp;
 
 /**
- * Created by Denis Lutsenko on 7/31/2016.
+ * Created by Denis Lutsenko.
  */
 public class Operation {
     private Integer id;

@@ -14,16 +14,22 @@ import java.util.List;
 
 
 /**
- * Created by Denis Lutsenko on 7/26/2016.
+ * Created by Denis Lutsenko.
  */
 public class CurrentHistoryCommand implements Command {
+    /**
+     * This method shows history of selected card.
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     * @throws SQLException
+     */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
 
         AccountService accountService = new AccountService(wrapper);
         List<Condition> accountList = accountService.showActiveAccounts();
-        String currIdcard = wrapper.findParameterByName("idCard");
-        wrapper.addNewAttributes("currIdcard", currIdcard);
+        String currIdCard = wrapper.findParameterByName("idCard");
+        wrapper.addNewAttributes("currIdcard", currIdCard);
 
         List<Operation> historyList = accountService.showAccountHistory();
         wrapper.addNewAttributes("accountList", accountList);

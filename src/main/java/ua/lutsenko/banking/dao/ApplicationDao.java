@@ -12,22 +12,34 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This class works with DataBase queries(Application table) and makes next operations:
+ * - Insert new application.
+ * - get application list.
+ * - delete application.
+ * - update application status.
  */
 public class ApplicationDao {
     private DataSource ds;
-    private static final Logger logger = Logger.getLogger(ApplicationDao.class);
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
+    private static final Logger LOG = Logger.getLogger(ApplicationDao.class);
+    private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("sqlstatements");
 
     ApplicationDao(DataSource ds) {
         this.ds = ds;
     }
 
-
+    /**
+     * This method inserts new application.
+     * @parameters contains all necessary data to insert new application.
+     * @return application object.
+     */
     public boolean insertApplication(int userId, String accountType, String accountCurrency, Date currDate,
-                                     double accountBalance, String accountStatus) throws SQLException {
+                                     double accountBalance, String accountStatus){
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("INSERT_APPLICATION"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_APPLICATION"));
             ps.setInt(1, userId);
             ps.setString(2, accountType);
             ps.setString(3, accountCurrency);
@@ -38,16 +50,19 @@ public class ApplicationDao {
             return true;
 
         } catch (SQLException e) {
-            logger.error("SQL error, " + e);
+            LOG.error("Can't insert application ", e);
             return false;
         }
 
     }
-
-    public List<Application> getApplications() throws SQLException {
+    /**
+     * This method gets all application list from table.
+     * @return list of application.
+     */
+    public List<Application> getApplications() {
         List<Application> applicationsList = new ArrayList<>();
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("GET_ALL_APPLICATIONS"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("GET_ALL_APPLICATIONS"));
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
@@ -71,34 +86,43 @@ public class ApplicationDao {
             }
             return applicationsList;
         } catch (SQLException e) {
-            logger.error("SQL error, " + e);
+            LOG.error("Can't get applications ", e);
             return null;
         }
     }
 
-
+    /**
+     * This method updates status of selected application.
+     * @param id contain id of selected application.
+     * @param status contain new value of status.
+     * @return boolean flag.
+     */
     public boolean updateApplicationStatus(int id, String status){
         try(Connection conn = ds.getConnection()){
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("UPDATE_STATUS"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("UPDATE_STATUS"));
             ps.setString(1, status);
             ps.setInt(2, id);
            ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+           LOG.error(" Can't update application status", e);
             return false;
         }
     }
 
-
-    public boolean deleteApplication(int applicationId) throws SQLException {
+    /**
+     * This method deletes  selected application.
+     * @param applicationId contain application id.
+     * @return boolean flag.
+     */
+    public boolean deleteApplication(int applicationId) {
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("DELETE_APPLICATION"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("DELETE_APPLICATION"));
             ps.setInt(1, applicationId);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("Can't delete application", e);
             return false;
         }
     }

@@ -6,12 +6,18 @@ import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
 import ua.lutsenko.banking.entity.Condition;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 public class AllAccountsCommand implements Command {
+    /**
+     * This method makes account lists of client and redirect to account page.
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     */
     @Override
     public String execute(RequestWrapper wrapper){
         AccountService accountService = new AccountService(wrapper);

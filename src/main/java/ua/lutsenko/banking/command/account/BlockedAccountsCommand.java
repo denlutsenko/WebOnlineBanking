@@ -15,6 +15,13 @@ import java.util.List;
  * Created by Denis Lutsenko on 8/1/2016.
  */
 public class BlockedAccountsCommand implements Command {
+    /**
+     * This method makes list of all blocked accounts.
+     *
+     * @param wrapper wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     * @throws SQLException
+     */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
         AccountService accountService = new AccountService(wrapper);

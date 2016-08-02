@@ -17,6 +17,12 @@
     <link href=" <c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
+<div align="right">
+    <form action="<c:url value="/welcomePage"/>" method="post">
+        <input type="hidden" name="ok" value="logOut"/>
+        <input type="submit"  class="btn btn-success" value=<fmt:message key="BTN_LOG_OUT"/>>
+    </form>
+</div>
 
 <ul class="headerMenu">
     <li>

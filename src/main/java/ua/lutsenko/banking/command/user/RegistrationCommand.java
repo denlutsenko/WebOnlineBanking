@@ -9,11 +9,19 @@ import ua.lutsenko.banking.command.RequestWrapper;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
+
+
 public class RegistrationCommand implements Command {
+    /**
+     * This method call user services and save new client.
+     * @param wrapper this is wrapper for HttpServletRequest.
+     * @return path to load a new jsp page.
+     * @throws SQLException
+     */
     @Override
-    public String execute(RequestWrapper wrapper) throws SQLException {
+    public String execute(RequestWrapper wrapper) {
         UserService userService = new UserService(wrapper);
         if (userService.insertUser()) {
             return "/jsp/index.jsp";

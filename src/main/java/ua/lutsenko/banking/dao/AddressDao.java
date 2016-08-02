@@ -10,7 +10,13 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This class works with DataBase queries(Address table) and makes next operations:
+ * - check is address exists in table.
+ * - insert new address.
  */
 public class AddressDao {
     private DataSource ds;
@@ -21,20 +27,31 @@ public class AddressDao {
         this.ds = ds;
     }
 
-    public boolean isAddressExist(int userId) throws SQLException {
+    /**
+     * This method checks is address exists.
+     *
+     * @param userId contain ID of user.
+     * @return boolean flag.
+     */
+    public boolean isAddressExist(int userId) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("IS_ADDRESS_EXIST"));
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            logger.error("SQL error, " + e);
+            logger.error("SQL error ", e);
             return false;
         }
     }
 
-    public boolean insertAddress(int userId, String country, String city, String street, String houseNumber) throws
-            SQLException {
+    /**
+     * This method inserts new address in table.
+     *
+     * @return Address object.
+     * @parameters contains all necessary info to save new address.
+     */
+    public boolean insertAddress(int userId, String country, String city, String street, String houseNumber) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("INSERT_ADDRESS"));
             ps.setInt(1, userId);
@@ -45,7 +62,7 @@ public class AddressDao {
             ps.execute();
             return true;
         } catch (SQLException e) {
-            logger.error("SQL error, " + e);
+            logger.error("SQL error, ", e);
             return false;
         }
     }

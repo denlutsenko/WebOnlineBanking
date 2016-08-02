@@ -15,12 +15,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This servlet accepts data from request and call account commands.
  */
 public class AccountServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
-    private static final Logger logger = Logger.getLogger(AccountServlet.class);
+    private static final Logger LOG = Logger.getLogger(AccountServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
@@ -36,7 +40,7 @@ public class AccountServlet extends HttpServlet {
         try {
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            logger.error("DBError", e);
+            LOG.error("DBError", e);
         }
         response.sendRedirect("/bank24/personalCabinet/success");
     }

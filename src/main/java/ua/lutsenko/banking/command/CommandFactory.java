@@ -17,6 +17,10 @@ public class CommandFactory {
     private final static CommandFactory INSTANCE = new CommandFactory();
     private Map<String, Command> commandMap = new HashMap<>();
 
+    public static synchronized CommandFactory getInstance() {
+        return INSTANCE;
+    }
+
     {
         commandMap.put("login", new LoginCommand());
         commandMap.put("registration", new RegistrationCommand());
@@ -43,11 +47,6 @@ public class CommandFactory {
         commandMap.put("createAccount", new NewAccountCommand());
 
     }
-
-    public static synchronized CommandFactory getInstance() {
-        return INSTANCE;
-    }
-
 
     /**
      * This method get Command by parameter value

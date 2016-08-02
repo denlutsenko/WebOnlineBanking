@@ -12,7 +12,7 @@ import java.util.Map;
  */
 
 /**
- * This is a wrapper class for HttpServletRequest
+ * This is a wrapper class for HttpServletRequest.
  */
 public class RequestWrapper {
     private HttpServletRequest request;
@@ -86,7 +86,7 @@ public class RequestWrapper {
      * This method add attribute to request
      *
      * @param key   attribute name.
-     * @param value ettribute value.
+     * @param value attribute value.
      */
     public void addNewAttributes(String key, Object value) {
         requestAttributesMap.put(key, value);

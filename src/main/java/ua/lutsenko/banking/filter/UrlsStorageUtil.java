@@ -2,6 +2,10 @@ package ua.lutsenko.banking.filter;
 /**
  * Created by Denis Lutsenko.
  */
+
+/**
+ * enum class contains all url path.
+ */
 enum UrlsStorageUtil {
     ADMIN_PAGE_CABINET("/jsp/adminPages/adminPersonalPage.jsp"),
     ADMIN_PAGE_APPLICATION_LIST("/jsp/adminPages/applicationList.jsp"),

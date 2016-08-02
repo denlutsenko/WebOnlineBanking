@@ -8,7 +8,7 @@ import ua.lutsenko.banking.command.RequestWrapper;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
  */
 public class AddressCommand implements Command {
     @Override

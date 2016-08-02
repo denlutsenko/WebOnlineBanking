@@ -7,9 +7,10 @@ import ua.lutsenko.banking.command.RequestWrapper;
 import ua.lutsenko.banking.entity.User;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 public class LoginCommand implements Command {
+
     @Override
     public String execute(RequestWrapper wrapper) {
         UserService userService = new UserService(wrapper);

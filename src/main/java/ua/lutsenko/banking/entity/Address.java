@@ -1,7 +1,7 @@
 package ua.lutsenko.banking.entity;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 public class Address {
     private int id;

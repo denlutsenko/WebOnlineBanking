@@ -15,7 +15,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 8/1/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This servlet accepts address data form request and call user commands.
  */
 public class AddressServlet extends HttpServlet {
     private RequestWrapper wrapper;

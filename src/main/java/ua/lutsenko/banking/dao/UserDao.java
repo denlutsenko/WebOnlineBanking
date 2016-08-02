@@ -12,7 +12,14 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This class works with User table and makes next operations:
+ * - check is exists user.
+ * - insert new user.
+ * - get all user data.
  */
 public class UserDao {
     private DataSource ds;
@@ -23,6 +30,13 @@ public class UserDao {
         this.ds = ds;
     }
 
+    /**
+     * This method checks is user exists in DB.
+     *
+     * @param email    user email
+     * @param password user password
+     * @return
+     */
     public boolean exist(String email, String password) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("EXISTS"));
@@ -36,6 +50,12 @@ public class UserDao {
         }
     }
 
+    /**
+     * This method inserts data of new user.
+     *
+     * @return boolean flag.
+     * @parameters contains all necessary information to make operation.
+     */
     public boolean insert(String firstName, String lastName, String middleName, String phone, String email, String
             password) {
         boolean exist = exist(email, password);
@@ -57,7 +77,12 @@ public class UserDao {
         }
     }
 
-
+    /**
+     * This method gets all user data from table.
+     *
+     * @return object of user.
+     * @parameters contains user e-mail and password to get all user data.
+     */
     public User getUserData(String email, String password) {
         User user = null;
         try (Connection conn = ds.getConnection()) {

@@ -2,7 +2,7 @@ package ua.lutsenko.banking.entity;
 import java.sql.Date;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 public class Application {
     private Integer id;

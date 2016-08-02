@@ -13,7 +13,13 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * Created by Denis Lutsenko on 7/31/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This class works with Operation table and makes next operations:
+ * - insert operation.
+ * - show account history.
  */
 public class OperationDao {
     private DataSource ds;
@@ -25,7 +31,13 @@ public class OperationDao {
     }
 
 
-    public List<Operation> showAccountHistory(int currId) throws SQLException {
+    /**
+     * This method makes history list of current account.
+     *
+     * @param currId parameter contain current user id.
+     * @return list of accounts by current user.
+     */
+    public List<Operation> showAccountHistory(int currId) {
         List<Operation> historyList = new ArrayList<>();
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_ACCOUNT_HISTORY"));
@@ -57,6 +69,13 @@ public class OperationDao {
         }
     }
 
+    /**
+     * This method inserts operation by any transfer. Also this method a part of transaction (@see AccountDao).
+     *
+     * @param conn parameter takes connection from transaction method from AccountDao.
+     * @parameters  contains all necessary info to save data into table.
+     * @return boolean flag.
+     */
     public boolean insertOperation(Connection conn,int cardId, String operationType, Timestamp currDate, double summ){
         try {
             PreparedStatement psOperation = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_OPERATION"));

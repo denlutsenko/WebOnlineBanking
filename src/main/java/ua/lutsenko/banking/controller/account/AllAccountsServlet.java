@@ -15,20 +15,23 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
  */
 
+/**
+ * This servlet accepts data from request and call account commands.
+ */
 public class AllAccountsServlet extends HttpServlet {
     private RequestWrapper wrapper;
     private String path;
-    private static final Logger logger = Logger.getLogger(AllAccountsServlet.class);
+    private static final Logger LOG = Logger.getLogger(AllAccountsServlet.class);
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         wrapper = new RequestWrapper(request);
         Command command = CommandFactory.getInstance().getCommand(request);
         try {
             path = command.execute(wrapper);
         } catch (SQLException e) {
-            logger.error("DBError"+ e);
+            LOG.error("DBError"+ e);
         }
         response.sendRedirect("/bank24/allActiveAccounts");
     }

@@ -188,6 +188,16 @@
         <url-pattern>/bank24/createNewAccountForm</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>ua.lutsenko.banking.controller.user.LogOutServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>LogOutServlet</servlet-name>
+        <url-pattern>/welcomePage</url-pattern>
+    </servlet-mapping>
 
 
     <!-- <servlet>

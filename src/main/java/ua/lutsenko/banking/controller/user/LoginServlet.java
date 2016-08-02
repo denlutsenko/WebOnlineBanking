@@ -16,7 +16,11 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 /**
- * Created by Denis Lutsenko on 7/25/2016.
+ * Created by Denis Lutsenko.
+ */
+
+/**
+ * This servlet accepts user dara from request and call user commands.
  */
 public class LoginServlet extends HttpServlet {
     private RequestWrapper wrapper;
