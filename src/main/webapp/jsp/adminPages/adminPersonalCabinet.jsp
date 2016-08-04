@@ -15,7 +15,6 @@
     <title></title>
 </head>
 <body>
-<h2 ALIGN="center"><fmt:message key="${sessionScope.msg}"/></h2>
 
 </body>
 </html>

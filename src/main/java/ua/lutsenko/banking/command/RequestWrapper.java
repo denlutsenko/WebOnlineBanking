@@ -46,7 +46,6 @@ public class RequestWrapper {
             for (int i = 0; i < paramValues.length; i++) {
 
                 requestParametersMap.put(paramName, paramValues[i]);
-                System.out.println(paramName +"  " + paramValues[i]);
             }
         }
     }

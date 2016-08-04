@@ -23,7 +23,7 @@ public class LoginCommand implements Command {
                 return "/jsp/userPages/personalCabinet.jsp";
             }
         } else {
-            return pathBundle.getString("error");
+            return "/jsp/reportPages/error.jsp";
         }
     }
 }

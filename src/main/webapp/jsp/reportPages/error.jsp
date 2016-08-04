@@ -10,6 +10,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<c:set var="lang" value="${not empty param.language ? param.language : sessionScope.lang}" scope="session"/>
+
+<fmt:setLocale value="${sessionScope.lang}"/>
+<fmt:setBundle basename="language"/>
+
 <html>
 <head>
     <title></title>
@@ -18,8 +23,6 @@
 <body>
 
 <H3 align="center"><fmt:message key="ERR_MSG"/></H3>
-<H4 align="center"><fmt:message key="${msg}"/></H4>
-
 
 </body>
 </html>

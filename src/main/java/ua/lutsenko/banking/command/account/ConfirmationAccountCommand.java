@@ -22,9 +22,7 @@ public class ConfirmationAccountCommand implements Command {
         AccountService accountService = new AccountService(wrapper);
         boolean isAccountAdded = accountService.createAccount();
         boolean isConditionsAdded = accountService.createConditions();
-
         if (isAccountAdded && isConditionsAdded) {
-            System.out.println(wrapper.findSessionAttrByName("applicationId"));
             accountService.updateApplicationStatus("CONFIRMED");
             return "/jsp/adminPages/adminPersonalCabinet.jsp";
         } else {

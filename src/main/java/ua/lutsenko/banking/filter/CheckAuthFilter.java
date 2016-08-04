@@ -20,11 +20,9 @@ import java.util.EnumSet;
 public class CheckAuthFilter implements Filter {
     private String checkAuthFilter;
     private final EnumSet<UrlsStorageUtil> ALL_USERS_URLS = EnumSet.range(UrlsStorageUtil.USER_PAGE_ACCOUNTS,
-            UrlsStorageUtil
-                    .USER_PAGE_LAYOUT_USER_MENU);
+            UrlsStorageUtil.USER_REFILL_BALANCE);
     private final EnumSet<UrlsStorageUtil> ALL_ADMIN_URLS = EnumSet.range(UrlsStorageUtil.ADMIN_PAGE_CABINET,
-            UrlsStorageUtil
-                    .ADMIN_PAGE_BLOCKED_ACCOUNTS);
+            UrlsStorageUtil.ADMIN_URL_NEW_ACCOUNT);
     private final EnumSet<UrlsStorageUtil> ALL_URLS = EnumSet.allOf(UrlsStorageUtil.class);
 
     @Override

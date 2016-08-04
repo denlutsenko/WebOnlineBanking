@@ -23,7 +23,7 @@ public class RegistrationCommand implements Command {
         if (userService.insertUser()) {
             return "/jsp/index.jsp";
         } else {
-            return "/jsp/reportPages/error.jsp";
+            return "/jsp/reportPages/error/jsp";
         }
     }
 }
