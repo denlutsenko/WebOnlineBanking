@@ -31,7 +31,6 @@ public class AccountServiceTest {
         conditionList.add(condition);
     }
 
-
     @Test
     public void getAllConditions() throws Exception {
         condition = mock(Condition.class);
@@ -112,10 +111,6 @@ public class AccountServiceTest {
         assertEquals(true, result);
     }
 
-    @Test
-    public void getApplications() throws Exception {
-
-    }
 
     @Test
     public void createAccount() throws Exception {

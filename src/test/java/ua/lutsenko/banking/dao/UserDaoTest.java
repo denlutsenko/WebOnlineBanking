@@ -20,7 +20,6 @@ public class UserDaoTest {
         userDao = new UserDao(dsUtil.getDs());
     }
 
-
     @Test
     public void exist() throws Exception {
         String email = "den.lutsenko@gmail.com";

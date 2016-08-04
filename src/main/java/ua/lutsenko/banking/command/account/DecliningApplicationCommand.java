@@ -21,6 +21,7 @@ public class DecliningApplicationCommand implements Command {
         AccountService accountService = new AccountService(wrapper);
         boolean isDeleted = accountService.deleteApplication();
         if (isDeleted) {
+
             return "/jsp/adminPages/adminPersonalCabinet.jsp";
         } else {
             return "/jsp/reportPages/errorPage.jsp";

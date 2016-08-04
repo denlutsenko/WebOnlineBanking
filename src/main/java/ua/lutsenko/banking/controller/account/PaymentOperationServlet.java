@@ -35,7 +35,6 @@ public class PaymentOperationServlet extends HttpServlet {
         wrapper.addParameter("idToCard", request.getParameter("idToCard"));
         wrapper.addParameter("operationType", request.getParameter("operationType"));
         wrapper.addParameter("operationSumm", request.getParameter("operationSumm"));
-        //wrapper.addParameter("idToCard", request.getParameter("idToCard"));
         Command command = CommandFactory.getInstance().getCommand(request);
 
         try {
