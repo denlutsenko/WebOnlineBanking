@@ -35,7 +35,7 @@
 <br/>
 
 <td><fmt:message key="FILL_FORM"/></td>
-<form action="<c:url value="/bank24/personalCabinet/success"/>" method="post">
+<form action="<c:url value="OnlineBanking24"/>" method="post">
 
     <table border="1">
         <tr>

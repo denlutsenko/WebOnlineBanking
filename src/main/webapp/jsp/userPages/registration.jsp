@@ -16,7 +16,7 @@
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
-<form action="<c:url value="/bank24/welcome"/>" method="post">
+<form action="<c:url value="OnlineBanking24"/>" method="post">
 
    <fmt:message key="ENTER_FNAME"/>
     <input type="text" class="form-control" name="firstName" required

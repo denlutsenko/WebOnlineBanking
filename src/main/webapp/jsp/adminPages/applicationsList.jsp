@@ -39,7 +39,7 @@
             <td>${applicationElem.currency}</td>
             <td>${applicationElem.date}</td>
             <td>
-                <form action="<c:url value="/bank24/createNewAccountForm"/>" method="post">
+                <form action="<c:url value="OnlineBanking24"/>" method="post">
                     <input type="hidden" name="applicationId" value="${applicationElem.id}">
                     <input type="hidden" name="userId" value="${applicationElem.user.id}">
                     <input type="hidden" name="type" value="${applicationElem.type}">
@@ -49,7 +49,7 @@
                     <input type="hidden" name="ok" value="createAccount"/>
                     <input type="submit" name="ok" value=<fmt:message key="APPROVE_QUERY"/>>
                 </form>
-                <form action="<c:url value="/bank24/personalCabinet/success"/>" method="post">
+                <form action="<c:url value="OnlineBanking24"/>" method="post">
                     <input type="hidden" name="applicationId" value="${applicationElem.id}">
                     <input type="hidden" name="ok" value="declineApplication"/>
                     <input type="submit" name="ok" value=<fmt:message key="REJECT_QUERY"/>>

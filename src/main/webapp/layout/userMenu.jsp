@@ -16,7 +16,7 @@
 </head>
 <body>
 <div align="right">
-    <form action="<c:url value="/welcomePage"/>" method="post">
+    <form action="<c:url value="OnlineBanking24/welcome"/>" method="post">
         <input type="hidden" name="ok" value="logOut"/>
         <input type="submit"  class="btn btn-success" value=<fmt:message key="BTN_LOG_OUT"/>>
     </form>
@@ -24,26 +24,26 @@
 
 <ul class="headerMenu">
     <li>
-        <form action="<c:url value="/bank24/allActiveAccounts"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="userAccounts"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message key="BTN_MY_ACCOUNTS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="/bank24/currentOperationsHistory"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="userOperations"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message
                     key="BTN_OPERATION_BY_CARDS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="/bank24/currentOperationsHistory"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="userPayments"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message key="BTN_MY_PAYMENTS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="/bank24/managements"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="userManagement"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message
                     key="BTN_ACCOUNT_MANAGEMENTS"/>>

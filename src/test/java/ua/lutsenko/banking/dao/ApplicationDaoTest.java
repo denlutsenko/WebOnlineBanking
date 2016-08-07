@@ -2,21 +2,19 @@ package ua.lutsenko.banking.dao;
 
 import org.junit.Before;
 import org.junit.Test;
-import ua.lutsenko.util.DsUtil;
+import util.DsUtil;
 
 import java.sql.Date;
 
 import static org.junit.Assert.*;
-
 
 /**
  * Created by Denis Lutsenko.
  */
 public class ApplicationDaoTest {
 
-
-    DsUtil dsUtil;
-    ApplicationDao applicationDao;
+   private DsUtil dsUtil;
+   private ApplicationDao applicationDao;
 
     @Before
     public void setUp() throws Exception {
@@ -53,4 +51,5 @@ public class ApplicationDaoTest {
         boolean result = applicationDao.deleteApplication(5);
         assertTrue(result);
     }
+
 }

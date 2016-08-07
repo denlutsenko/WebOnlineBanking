@@ -18,19 +18,19 @@
 
 <ul class="managementMenu">
     <li>
-        <form action="<c:url value="/bank24/managements/openingNewAccount/form"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="newApplication"/>
             <input type="submit" name="ok" value=<fmt:message key="OPEN_NEW_ACCOUNT"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="/bank24/managements/blockAccount"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="lockAccount"/>
             <input type="submit" name="ok" value=<fmt:message key="LOCK_ACCOUNT"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="/bank24/managements/refillBalance"/>" method="post">
+        <form action="<c:url value="OnlineBanking24"/>" method="post">
             <input type="hidden" name="ok" value="refillBalance"/>
             <input type="submit" name="ok" value=<fmt:message key="REFILL_ACCOUNT"/>>
         </form>

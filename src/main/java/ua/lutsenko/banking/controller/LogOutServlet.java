@@ -1,4 +1,4 @@
-package ua.lutsenko.banking.controller.user;
+package ua.lutsenko.banking.controller;
 
 import org.apache.log4j.Logger;
 
@@ -17,19 +17,16 @@ import java.io.IOException;
  * This servlet destroying current session and redirects to main page.
  */
 public class LogOutServlet extends HttpServlet {
-    private String path;
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
         request.getSession(true).invalidate();
-        path = "/jsp/index.jsp";
-        response.sendRedirect("/welcomePage");
+        response.sendRedirect("/OnlineBanking24/welcome");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        request.getRequestDispatcher(path).forward(request, response);
+        request.getRequestDispatcher("/jsp/index.jsp").forward(request, response);
     }
 }

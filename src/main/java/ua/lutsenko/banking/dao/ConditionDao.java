@@ -29,7 +29,7 @@ public class ConditionDao {
     private static final Logger LOG = Logger.getLogger(ConditionDao.class);
     private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("sqlstatements");
 
-    ConditionDao(DataSource ds) {
+    public ConditionDao(DataSource ds) {
         this.ds = ds;
     }
 

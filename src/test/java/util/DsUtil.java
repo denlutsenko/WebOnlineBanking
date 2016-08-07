@@ -1,4 +1,4 @@
-package ua.lutsenko.util;
+package util;
 
 import javax.sql.DataSource;
 import java.io.PrintWriter;
@@ -7,8 +7,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
-
-import static java.sql.DriverManager.getConnection;
 
 /**
  * Created by Denis Lutsenko.

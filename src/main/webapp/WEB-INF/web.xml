@@ -23,173 +23,30 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.user.LoginServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/bank24/personalCabinet</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.user.RegistrationServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>RegistrationServlet</servlet-name>
-        <url-pattern>/bank24/welcome</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AllAccounts</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.AllAccountsServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>AllAccounts</servlet-name>
-        <url-pattern>/bank24/allActiveAccounts</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>PaymentOperations</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.PaymentOperationServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>PaymentOperations</servlet-name>
-        <url-pattern>/bank24/PaymentOperations</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>currentOperationHistory</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.CurrentHistoryServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>currentOperationHistory</servlet-name>
-        <url-pattern>/bank24/currentOperationsHistory</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>ManagementServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.ManagementServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>ManagementServlet</servlet-name>
-        <url-pattern>/bank24/managements</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>NewApplicationFormServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.NewApplicationServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>NewApplicationFormServlet</servlet-name>
-        <url-pattern>/bank24/managements/openingNewAccount/form</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>AddressFormServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.user.AddressServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>AddressFormServlet</servlet-name>
-        <url-pattern>/bank24/managements/openingNewAccount/addressForm</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>BlockAccountServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.BlockAccountServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>BlockAccountServlet</servlet-name>
-        <url-pattern>/bank24/managements/blockAccount</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>RefillBalanceServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.RefillBalanceServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>RefillBalanceServlet</servlet-name>
-        <url-pattern>/bank24/managements/refillBalance</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>BlockedAccountServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.BlockedAccountsServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>BlockedAccountServlet</servlet-name>
-        <url-pattern>/bank24/blockedAccounts</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>NewApplicationsServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.ApplicationsServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>NewApplicationsServlet</servlet-name>
-        <url-pattern>/bank24/newApplications</url-pattern>
-    </servlet-mapping>
-
-
-    <servlet>
-        <servlet-name>AccountServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.AccountServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
-        <servlet-name>AccountServlet</servlet-name>
-        <url-pattern>/bank24/personalCabinet/success</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>CreateNewAccountServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.account.NewAccountServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>CreateNewAccountServlet</servlet-name>
-        <url-pattern>/bank24/createNewAccountForm</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>LogOutServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.user.LogOutServlet</servlet-class>
+        <servlet-name>MainServlet</servlet-name>
+        <servlet-class>ua.lutsenko.banking.controller.MainServlet</servlet-class>
     </servlet>
 
 
     <servlet-mapping>
         <servlet-name>LogOutServlet</servlet-name>
-        <url-pattern>/welcomePage</url-pattern>
+
+        <url-pattern>/OnlineBanking24/welcome</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>LogOutServlet</servlet-name>
+        <servlet-class>ua.lutsenko.banking.controller.LogOutServlet</servlet-class>
+    </servlet>
+
+
+    <servlet-mapping>
+        <servlet-name>MainServlet</servlet-name>
+        <url-pattern>/</url-pattern>
+        <url-pattern>/OnlineBanking24</url-pattern>
+    </servlet-mapping>
+
+
 
     <!--DB Connection start-->
     <resource-ref>

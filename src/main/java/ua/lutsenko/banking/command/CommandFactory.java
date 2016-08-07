@@ -15,6 +15,7 @@ import java.util.Map;
 
 public class CommandFactory {
     private final static CommandFactory INSTANCE = new CommandFactory();
+
     private Map<String, Command> commandMap = new HashMap<>();
 
     public static synchronized CommandFactory getInstance() {

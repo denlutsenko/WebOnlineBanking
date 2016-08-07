@@ -17,7 +17,7 @@
 <body>
 <fmt:message key="PAYMENTS_HISTORY"/>
 
-<form action="<c:url value="/bank24/currentOperationsHistory"/>" method="POST">
+<form action="<c:url value="OnlineBanking24"/>" method="POST">
   <select name="idCard" class="chargeCard">
     <c:forEach items="${requestScope.accountList}" var="accountElem">
         <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode}

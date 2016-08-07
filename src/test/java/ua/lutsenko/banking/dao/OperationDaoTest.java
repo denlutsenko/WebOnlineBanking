@@ -3,9 +3,9 @@ package ua.lutsenko.banking.dao;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.lutsenko.util.DsUtil;
+import util.DsUtil;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by Denis Lutsenko.

@@ -10,7 +10,7 @@
 </head>
 <body>
 <div align="center">
-    <form action="<c:url value="/bank24/managements"/>" method="post">
+    <form action="<c:url value="OnlineBanking24"/>" method="post">
 
         <fmt:message key="SPECIFY_TYPE_OF_ACCOUNT"/>
         <input type="text" class="form-control" name="accountType" required

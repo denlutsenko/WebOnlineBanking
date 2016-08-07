@@ -2,13 +2,12 @@ package ua.lutsenko.banking.dao;
 
 import org.junit.Test;
 import org.mockito.Matchers;
-import ua.lutsenko.util.DsUtil;
+import util.DsUtil;
 
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.util.Calendar;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 

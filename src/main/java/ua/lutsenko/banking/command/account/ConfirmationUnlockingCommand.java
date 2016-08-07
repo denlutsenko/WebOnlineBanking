@@ -1,8 +1,9 @@
 package ua.lutsenko.banking.command.account;
 
-import ua.lutsenko.banking.businesslogic.AccountService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
+import ua.lutsenko.banking.dao.AccountDao;
+import ua.lutsenko.banking.dao.DaoFactory;
 
 import java.sql.SQLException;
 
@@ -19,8 +20,12 @@ public class ConfirmationUnlockingCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
-        AccountService accountService = new AccountService(wrapper);
-        if (accountService.unblockAccount()) {
+        String accountCode = wrapper.findParameterByName("cardNumber");
+        AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
+
+        boolean isUnblocked = accountDao.unblockAccount(accountCode);
+
+        if (isUnblocked) {
             return "/jsp/adminPages/adminPersonalCabinet.jsp";
         } else {
             return "/jsp/reportPages/error.jsp";

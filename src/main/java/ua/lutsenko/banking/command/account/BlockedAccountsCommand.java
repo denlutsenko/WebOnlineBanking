@@ -1,8 +1,9 @@
 package ua.lutsenko.banking.command.account;
 
-import ua.lutsenko.banking.businesslogic.AccountService;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
+import ua.lutsenko.banking.dao.AccountDao;
+import ua.lutsenko.banking.dao.DaoFactory;
 import ua.lutsenko.banking.entity.Account;
 
 import java.sql.SQLException;
@@ -21,9 +22,11 @@ public class BlockedAccountsCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
-        AccountService accountService = new AccountService(wrapper);
-        List<Account> blockedCardsList = accountService.showBlockedAccounts();
+        AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
+        List<Account> blockedCardsList = accountDao.showBlockedAccounts();
+
         wrapper.addNewAttributes("blockedCardsList", blockedCardsList);
+
         return "/jsp/adminPages/blockedAccounts.jsp";
     }
 }

@@ -34,7 +34,7 @@ public class UserDao {
      *
      * @param email    user email
      * @param password user password
-     * @return
+     * @return boolean flag
      */
     public boolean exist(String email, String password) {
         try (Connection conn = ds.getConnection()) {

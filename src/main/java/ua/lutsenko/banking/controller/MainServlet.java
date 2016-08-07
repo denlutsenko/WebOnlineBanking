@@ -1,13 +1,12 @@
-package ua.lutsenko.banking.controller.account;
-
+package ua.lutsenko.banking.controller;
 
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.CommandFactory;
 import ua.lutsenko.banking.command.RequestWrapper;
 
-
 import javax.servlet.ServletException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,27 +16,24 @@ import java.sql.SQLException;
 /**
  * Created by Denis Lutsenko.
  */
-
-/**
- * This servlet accepts data from request and call account commands.
- */
-public class BlockedAccountsServlet extends HttpServlet {
+public class MainServlet extends HttpServlet {
+    private static final Logger LOG = Logger.getLogger(MainServlet.class);
     private RequestWrapper wrapper;
     private String path;
-    private final Logger LOG = Logger.getLogger(BlockedAccountsServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        Command command = CommandFactory.getInstance().getCommand(request);
         wrapper = new RequestWrapper(request);
+        Command command = CommandFactory.getInstance().getCommand(request);
+        wrapper.extractParamValues();
         try {
-            wrapper.extractParamValues();
             path = command.execute(wrapper);
+        command.execute(wrapper);
         } catch (SQLException e) {
             LOG.error("DBError", e);
         }
-        response.sendRedirect("/bank24/blockedAccounts");
+        response.sendRedirect("/OnlineBanking24");
     }
 
     @Override

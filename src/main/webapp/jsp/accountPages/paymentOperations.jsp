@@ -18,7 +18,7 @@
 <div class="cardsOp">
     <fmt:message key="INNER_TRANSFER"/>
     <br><fmt:message key="FROM_CARD"/>
-    <form method="post" action="<c:url value="/bank24/PaymentOperations"/>">
+    <form method="post" action="<c:url value="OnlineBanking24"/>">
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
@@ -54,7 +54,7 @@
 
     <fmt:message key="WITHDRAWAL"/>
     <br><fmt:message key="FROM_CARD"/>
-    <form method="post" action="<c:url value="/bank24/PaymentOperations"/>">
+    <form method="post" action="<c:url value="OnlineBanking24"/>">
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
@@ -76,7 +76,7 @@
     <br>
 
     <fmt:message key="DO_PAYMENT"/>
-    <form method="post" action="<c:url value="/bank24/PaymentOperations"/>">>
+    <form method="post" action="<c:url value="OnlineBanking24"/>">>
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">

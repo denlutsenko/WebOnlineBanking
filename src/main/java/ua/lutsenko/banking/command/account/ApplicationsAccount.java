@@ -1,8 +1,10 @@
 package ua.lutsenko.banking.command.account;
 
-import ua.lutsenko.banking.businesslogic.AccountService;
+
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
+import ua.lutsenko.banking.dao.ApplicationDao;
+import ua.lutsenko.banking.dao.DaoFactory;
 import ua.lutsenko.banking.entity.Application;
 
 import java.sql.SQLException;
@@ -21,9 +23,11 @@ public class ApplicationsAccount implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
-        AccountService accountService = new AccountService(wrapper);
-        List<Application> applicationList = accountService.getApplications();
+        ApplicationDao applicationDao  = DaoFactory.getInstance().getApplicationDao();
+        List<Application> applicationList = applicationDao.getApplications();
+
         wrapper.addNewAttributes("applicationList", applicationList);
+
         return "/jsp/adminPages/applicationsList.jsp";
     }
 }

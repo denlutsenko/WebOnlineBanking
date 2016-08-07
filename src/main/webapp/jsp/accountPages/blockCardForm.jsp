@@ -17,7 +17,7 @@
 </head>
 <body>
 
-<form action="<c:url value="/bank24/managements"/>" method="post">
+<form action="<c:url value="OnlineBanking24"/>" method="post">
     <fmt:message key="ENTER_CARD_NUMBER"/>
     <input type="text" name="cardNumber" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
            oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>

@@ -19,7 +19,7 @@
 <body>
 
 <div align="center">
-    <form action="<c:url value="/bank24/managements"/>" method="post">
+    <form action="<c:url value="OnlineBanking24"/>" method="post">
 
         <select name="currCardId" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"

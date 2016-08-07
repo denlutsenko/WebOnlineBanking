@@ -4,7 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import ua.lutsenko.banking.entity.User;
-import ua.lutsenko.util.DsUtil;
+import util.DsUtil;
 
 import static org.junit.Assert.*;
 
@@ -13,12 +13,12 @@ import static org.junit.Assert.*;
  */
 public class UserDaoTest {
     private UserDao userDao;
-
     @Before
     public void setUp() throws Exception {
         DsUtil dsUtil = new DsUtil();
         userDao = new UserDao(dsUtil.getDs());
     }
+
 
     @Test
     public void exist() throws Exception {
@@ -40,11 +40,12 @@ public class UserDaoTest {
 
     @Test
     public void getUserData() throws Exception {
-       String email = "den.lutsenko@gmail.com";
+        String email = "den.lutsenko@gmail.com";
         String password = "d";
         User user = userDao.getUserData(email, password);
         assertNotNull(user);
     }
+
 
     @After
     public void tearDown() throws Exception {

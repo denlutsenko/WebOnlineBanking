@@ -19,7 +19,7 @@
 <body>
 
 <div>
-  <form name="checkLogin" action="<c:url value="/bank24/personalCabinet"/>"  method="post">
+  <form name="checkLogin" action="<c:url value="/OnlineBanking24"/>"  method="post">
     <fmt:message key="LOGIN"/>
     <input type="text" class="form-control" name="email"
            required oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_LOGIN"/>)"

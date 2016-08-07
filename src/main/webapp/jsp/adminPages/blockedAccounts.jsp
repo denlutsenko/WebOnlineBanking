@@ -31,7 +31,7 @@
 </div>
 
 <div>
-    <form action="<c:url value="/bank24/personalCabinet"/>" method="post">
+    <form action="<c:url value="OnlineBanking24"/>" method="post">
         <input type="text" name="cardNumber" required
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
                oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/><br/>
