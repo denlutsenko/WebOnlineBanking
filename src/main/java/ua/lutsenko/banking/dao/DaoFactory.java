@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 
 import javax.naming.InitialContext;
@@ -20,7 +19,7 @@ public class DaoFactory {
     private DataSource ds;
 
     /**
-     * Private constructor. Makes object of initial context context and data source.
+     * Private constructor. Create object of initial context and init data source.
      * @throws NamingException
      */
     private DaoFactory() throws NamingException {
@@ -29,7 +28,7 @@ public class DaoFactory {
     }
 
     /**
-     * Synchronized method which makes instance of DaoFactory.
+     * Synchronized method which create instance of DaoFactory.
      * @return instance
      */
     public static synchronized DaoFactory getInstance() {

@@ -13,7 +13,7 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="MY_ACCOUNTS"/></title>
 </head>
 <body>
 
@@ -38,7 +38,7 @@
 
     <div>
         <c:forEach items="${requestScope.listCreditConditions}" var="listAccountsElem">
-            <div><b>${listAccountsElem.type} ${listAccountsElem.account.accountCode}</b></div>
+            <div><b>${listAccountsElem.type}: ${listAccountsElem.account.accountCode}</b></div>
             <div><fmt:message
                     key="CREDIT_LIMIT"/>${listAccountsElem.account.defaultBalance} ${listAccountsElem.account.currency} </div>
             <div><fmt:message key="AVALIABLE_BALANCE"/> ${listAccountsElem.account.currentBalance}</div>

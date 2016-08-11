@@ -4,7 +4,7 @@ package ua.lutsenko.banking.filter;
  */
 
 /**
- * enum class contains all url path.
+ * enum class. This is storage of all url path. Using in CheckAuthFilter to limit unauthorized access.
  */
 enum UrlsStorageUtil {
     ADMIN_PAGE_CABINET("/jsp/adminPages/adminPersonalPage.jsp"),
@@ -26,9 +26,6 @@ enum UrlsStorageUtil {
     USER_PAGE_LAYOUT_ADMIN_MENU("/jsp/layout/adminMenu.jsp"),
     USER_PAGE_LAYOUT_HEADER("/jsp/layout/header.jsp"),
     USER_PAGE_LAYOUT_USER_MENU("/jsp/layout/userMenu.jsp");
-
-
-
 
     private String path;
 

@@ -22,15 +22,15 @@ import java.util.ResourceBundle;
  */
 public class UserDao {
     private DataSource ds;
-    private static final Logger logger = Logger.getLogger(UserDao.class);
-    private final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
+    private static final Logger LOG = Logger.getLogger(UserDao.class);
+    private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("sqlstatements");
 
     UserDao(DataSource ds) {
         this.ds = ds;
     }
 
     /**
-     * This method checks is user exists in DB.
+     * This method checks is user exists in table 'user'.
      *
      * @param email    user email
      * @param password user password
@@ -38,13 +38,13 @@ public class UserDao {
      */
     public boolean exist(String email, String password) {
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("EXISTS"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("EXISTS"));
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
             return rs.next();
         } catch (SQLException e) {
-            logger.error("SQL error, ", e);
+            LOG.error("SQL error, ", e);
             return false;
         }
     }
@@ -60,7 +60,7 @@ public class UserDao {
         boolean exist = exist(email, password);
         try (Connection conn = ds.getConnection()) {
             if (!exist) {
-                PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("INSERT_USER"));
+                PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_USER"));
                 ps.setString(1, firstName);
                 ps.setString(2, lastName);
                 ps.setString(3, middleName);
@@ -71,7 +71,7 @@ public class UserDao {
             }
             return true;
         } catch (SQLException e) {
-            logger.error("Can't insert new user, ", e);
+            LOG.error("Can't insert new user, ", e);
             return false;
         }
     }
@@ -79,13 +79,13 @@ public class UserDao {
     /**
      * This method gets all user data from table.
      *
-     * @return object of user.
+     * @return object of user with user data.
      * @parameters contains user e-mail and password to get all user data.
      */
     public User getUserData(String email, String password) {
         User user = null;
         try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(resourceBundle.getString("GET_USER_DATA"));
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("GET_USER_DATA"));
             ps.setString(1, email);
             ps.setString(2, password);
             ResultSet rs = ps.executeQuery();
@@ -102,8 +102,21 @@ public class UserDao {
                 user.setAdmin(isAdmin);
             }
         } catch (SQLException e) {
-            logger.error("Can't get user data ", e);
+            LOG.error("Can't get user data ", e);
         }
         return user;
+    }
+
+    public boolean deleteUser(String email, String password) {
+        try (Connection conn = ds.getConnection()) {
+            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("DELETE_USER"));
+            ps.setString(1, email);
+            ps.setString(2, password);
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            LOG.error("Can't delete application", e);
+            return false;
+        }
     }
 }

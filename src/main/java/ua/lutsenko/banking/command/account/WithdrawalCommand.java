@@ -7,6 +7,8 @@ import ua.lutsenko.banking.dao.DaoFactory;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 /**
@@ -26,14 +28,12 @@ public class WithdrawalCommand implements Command {
         String currCardId = wrapper.findParameterByName("idFromCard");
         String currOperationSumm = wrapper.findParameterByName("operationSumm");
         String currOperationType = wrapper.findParameterByName("operationType");
-        Calendar cal = Calendar.getInstance();
-        Timestamp currDate = new Timestamp(cal.getTimeInMillis());
         int idCard = Integer.parseInt(currCardId);
         double operationSumm = Double.parseDouble(currOperationSumm);
+        LocalDateTime currDate = LocalDateTime.now();
 
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
         boolean isAdded = accountDao.doPayment(idCard, currOperationType, currDate, operationSumm);
-
         if (isAdded) {
             return "/jsp/userPages/personalCabinet.jsp";
         } else {

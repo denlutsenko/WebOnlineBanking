@@ -4,17 +4,18 @@ import org.junit.Before;
 import org.junit.Test;
 import util.DsUtil;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 /**
  * Created by Denis Lutsenko.
  */
 public class ApplicationDaoTest {
-
-   private DsUtil dsUtil;
-   private ApplicationDao applicationDao;
+    private ApplicationDao applicationDao;
+    private DsUtil dsUtil;
 
     @Before
     public void setUp() throws Exception {
@@ -24,32 +25,28 @@ public class ApplicationDaoTest {
 
     @Test
     public void insertApplication() throws Exception {
-        int userId = 1;
-        String accountType = "CREDIT";
-        String accountCurrency = "USD";
-        Date currDate = Date.valueOf(java.time.LocalDate.now());
-        double accountBalance = 100;
-        String accountStatus = "PENDING";
-        boolean result = applicationDao.insertApplication(userId, accountType, accountCurrency, currDate,
-                accountBalance, accountStatus);
-        assertTrue(result);
+        LocalDate currDate = LocalDate.now();
+        applicationDao = mock(ApplicationDao.class);
+        when(applicationDao.insertApplication(1, "CREDIT", "USD", currDate, 1.00, "REJECTED")).thenReturn(true);
+        assertTrue(applicationDao.insertApplication(1, "CREDIT", "USD", currDate, 1.00, "REJECTED"));
     }
 
     @Test
     public void getApplications() throws Exception {
-        assertEquals(2, applicationDao.getApplications().size());
+        assertNotNull(applicationDao.getApplications());
     }
 
     @Test
     public void updateApplicationStatus() throws Exception {
-        boolean result = applicationDao.updateApplicationStatus(1, "pending");
-        assertEquals(true, result);
+        int applicationId = 3;
+        String status = "CONFIRMED";
+        assertTrue(applicationDao.updateApplicationStatus(applicationId, status));
     }
 
     @Test
     public void deleteApplication() throws Exception {
-        boolean result = applicationDao.deleteApplication(5);
-        assertTrue(result);
+        applicationDao = mock(ApplicationDao.class);
+        when(applicationDao.deleteApplication(1)).thenReturn(true);
+        assertTrue(applicationDao.deleteApplication(1));
     }
-
 }

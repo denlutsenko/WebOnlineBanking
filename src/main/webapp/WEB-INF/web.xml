@@ -29,21 +29,9 @@
 
 
     <servlet-mapping>
-        <servlet-name>LogOutServlet</servlet-name>
-
-        <url-pattern>/OnlineBanking24/welcome</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>LogOutServlet</servlet-name>
-        <servlet-class>ua.lutsenko.banking.controller.LogOutServlet</servlet-class>
-    </servlet>
-
-
-    <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/</url-pattern>
-        <url-pattern>/OnlineBanking24</url-pattern>
+        <url-pattern>/OnlineBanking24/</url-pattern>
     </servlet-mapping>
 
 
@@ -95,5 +83,17 @@
 
     </filter-mapping>
     <!--auth filter end-->
+    <error-page>
+        <error-code>500</error-code>
+        <location>/jsp/reportPages/error.jsp</location>
+    </error-page>
+
+
+    <error-page>
+        <error-code>404</error-code>
+        <location>/jsp/reportPages/error.jsp</location>
+    </error-page>
+
+
 
 </web-app>

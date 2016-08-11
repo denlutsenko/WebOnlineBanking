@@ -12,16 +12,16 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="BLOCK_FORM"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 
-<form action="<c:url value="OnlineBanking24"/>" method="post">
+<form action="OnlineBanking24/" method="post">
     <fmt:message key="ENTER_CARD_NUMBER"/>
     <input type="text" name="cardNumber" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
            oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/>
-    <input type="hidden" name="ok" value="confirmLocking"/>
+    <input type="hidden" name="ok" value="PersonalCabinet/CardLocked"/>
     <input type="submit" name="ok" value=<fmt:message key="LOCK_ACCOUNT"/>>
 </form>
 

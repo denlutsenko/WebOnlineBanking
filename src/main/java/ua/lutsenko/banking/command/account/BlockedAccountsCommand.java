@@ -22,10 +22,10 @@ public class BlockedAccountsCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
         List<Account> blockedCardsList = accountDao.showBlockedAccounts();
-
-        wrapper.addNewAttributes("blockedCardsList", blockedCardsList);
+        wrapper.addNewAttribute("blockedCardsList", blockedCardsList);
 
         return "/jsp/adminPages/blockedAccounts.jsp";
     }

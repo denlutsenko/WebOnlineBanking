@@ -1,12 +1,13 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.entity.Account;
 import ua.lutsenko.banking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import java.util.List;
@@ -32,22 +33,24 @@ public class AccountDao {
     private DataSource ds;
     private static final Logger LOG = Logger.getLogger(AccountDao.class);
     private final static ResourceBundle RESOURCE_BUNDLE = ResourceBundle.getBundle("sqlstatements");
-    OperationDao operation = null;
+    private OperationDao operationDao = null;
 
     public AccountDao(DataSource ds) {
         this.ds = ds;
     }
 
     /**
-     * This method makes some payment.
+     * This is transactional method.  Method makes some payment and
+     * save data of payment to operation (history) table.
      *
      * @return boolean flag.
      * @throws SQLException
      * @parameters contains necessary information of card info and payment type.
      */
-    public boolean doPayment(int idCard, String operationType, Timestamp currDate, double operationSumm)
+    public boolean doPayment(int idCard, String operationType, LocalDateTime dateTime, double operationSumm)
             throws SQLException {
         Connection conn = ds.getConnection();
+        operationDao = new OperationDao(ds);
         conn.setAutoCommit(false);
         try {
             PreparedStatement psFundsWithdrawal = conn.prepareStatement(RESOURCE_BUNDLE.getString
@@ -55,13 +58,7 @@ public class AccountDao {
             psFundsWithdrawal.setDouble(1, operationSumm);
             psFundsWithdrawal.setInt(2, idCard);
             psFundsWithdrawal.executeUpdate();
-
-            PreparedStatement psInsertOp = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_OPERATION"));
-            psInsertOp.setInt(1, idCard);
-            psInsertOp.setString(2, operationType);
-            psInsertOp.setTimestamp(3, currDate);
-            psInsertOp.setDouble(4, operationSumm);
-            psInsertOp.execute();
+            operationDao.insertOperation(conn, idCard, operationType, dateTime, operationSumm);
             return true;
         } catch (SQLException e) {
             LOG.error("DB withdrawal error", e);
@@ -74,34 +71,30 @@ public class AccountDao {
     }
 
     /**
-     * Transaction method.
-     * This method makes inner transfer between cards. Also saves operations to history table.
+     * This is transactional method.
+     * Method makes inner transfer between cards. Also this method saves appropriate operations to history table.
      *
      * @return boolean flag.
      * @throws SQLException
-     * @parameters contains necessary information of the first card.
+     * @parameters contains necessary information of the cards.
      */
-    public boolean doInnerTransfer(int idFromCard, String operationType, Timestamp currDate, double newSummFrom, int
+    public boolean doInnerTransfer(int idFromCard, String operationType, LocalDateTime currDate, double newSummFrom, int
             idToCard, double summTo) throws SQLException {
         Connection conn = ds.getConnection();
-        operation = new OperationDao(ds);
+        operationDao = new OperationDao(ds);
         conn.setAutoCommit(false);
         try {
             PreparedStatement psRefillTo = conn.prepareStatement(RESOURCE_BUNDLE.getString("REFILL_BALANCE"));
-
             psRefillTo.setDouble(1, summTo);
             psRefillTo.setInt(2, idToCard);
             psRefillTo.executeUpdate();
-
-            operation.insertOperation(conn, idToCard, operationType, currDate, summTo);
+            operationDao.insertOperation(conn, idToCard, operationType, currDate, summTo);
 
             PreparedStatement psWithDrawalFrom = conn.prepareStatement(RESOURCE_BUNDLE.getString("WITHDRAWAL_BALANCE"));
             psWithDrawalFrom.setDouble(1, newSummFrom);
             psWithDrawalFrom.setInt(2, idFromCard);
             psWithDrawalFrom.executeUpdate();
-
-            operation.insertOperation(conn, idFromCard, operationType, currDate, newSummFrom);
-
+            operationDao.insertOperation(conn, idFromCard, operationType, currDate, newSummFrom);
             return true;
         } catch (SQLException e) {
             LOG.error("inner payment false", e);
@@ -136,15 +129,16 @@ public class AccountDao {
     }
 
     /**
-     * Transaction method.
-     * This method updates balance of selected account and save info of payment to history table.
+     * This is transactional method.
+     * This method updates balance of selected account and save info of refilling to history table.
      *
      * @return boolean flag.
      * @throws SQLException
      * @parameters contains inputted operation sum.
      */
-    public boolean updateBalance(int cardId, String operationType, Timestamp date, double opSumm) throws SQLException {
-        operation = new OperationDao(ds);
+    public boolean updateBalance(int cardId, String operationType, LocalDateTime date, double opSumm) throws
+            SQLException {
+        operationDao = new OperationDao(ds);
         Connection conn = ds.getConnection();
         conn.setAutoCommit(false);
         try {
@@ -152,7 +146,7 @@ public class AccountDao {
             psAccount.setDouble(1, opSumm);
             psAccount.setInt(2, cardId);
             psAccount.executeUpdate();
-            operation.insertOperation(conn, cardId, operationType, date, opSumm);
+            operationDao.insertOperation(conn, cardId, operationType, date, opSumm);
             return true;
         } catch (SQLException e) {
             LOG.error("DB transaction error", e);
@@ -176,7 +170,7 @@ public class AccountDao {
             ps.setString(1, cardNumber);
             return ps.executeUpdate() == 1;
         } catch (SQLException e) {
-            LOG.error("SQL exception, " + e);
+            LOG.error("SQL exception, ", e);
             return false;
         }
     }
@@ -195,7 +189,6 @@ public class AccountDao {
                 String firstName = rs.getString("first_name");
                 String lastName = rs.getString("last_name");
                 String middleName = rs.getString("middle_name");
-
                 String accountCode = rs.getString("account_code");
                 double currentBalance = rs.getDouble("current_balance");
                 String currency = rs.getString("currency");
@@ -206,7 +199,7 @@ public class AccountDao {
             }
             return blockedAccounts;
         } catch (SQLException e) {
-            LOG.error("SQL error, " + e);
+            LOG.error("SQL error, ", e);
             return null;
         }
     }
@@ -229,47 +222,60 @@ public class AccountDao {
     }
 
     /**
-     * This method creates new account.
+     * This is transactional method. Method creates new account and creates account conditions.
      *
      * @return boolean flag.
-     * @parameters contains all necessary information to create new account.
+     * @parameters contains all necessary information to create new account and conditions for current account.
      */
-    public boolean createAccount(int userId, String accountCode, Date currDate, String currency, double balance) {
-        try (Connection conn = ds.getConnection()) {
-            PreparedStatement psAcc = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_ACCOUNT"));
-            psAcc.setInt(1, userId);
-            psAcc.setString(2, accountCode);
-            psAcc.setDate(3, currDate);
-            psAcc.setString(4, currency);
-            psAcc.setDouble(5, balance);
-            psAcc.setDouble(6, balance);
-            psAcc.execute();
+    public boolean createAccount(int userId, String accountCode, LocalDate currDate, String currency, double balance,
+                                 double accountWPercent, double monthlyPercent, String deadLine, String type) throws
+            SQLException {
+        Connection conn = ds.getConnection();
+        ConditionDao conditionDao = new ConditionDao(ds);
+        conn.setAutoCommit(false);
+        try {
+            PreparedStatement psAccount = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_ACCOUNT"));
+            psAccount.setInt(1, userId);
+            psAccount.setString(2, accountCode);
+            Date currentDate = Date.valueOf(currDate);
+            psAccount.setDate(3, currentDate);
+            psAccount.setString(4, currency);
+            psAccount.setDouble(5, balance);
+            psAccount.setDouble(6, balance);
+            psAccount.execute();
+
+            int lastID = getLastInsertId(conn);
+            conditionDao.createConditions(conn, lastID, accountWPercent, monthlyPercent, deadLine, type);
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error(" bad transaction", e);
+            conn.rollback();
             return false;
+        } finally {
+            conn.commit();
+            conn.close();
         }
     }
 
     /**
-     * This method gets current account ID.
+     * This method gets last inserted ID.
      *
-     * @param accountCode contain account code.
-     * @return account code.
+     * @param conn SQL Connection.
+     * @return last inserted Id.
+     * @throws SQLException
      */
-    public int getAccountId(String accountCode) {
-        int cardId = 0;
-        try (Connection conn = ds.getConnection()) {
-            PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_CARD_ID"));
-            ps.setString(1, accountCode);
-            ResultSet rs = ps.executeQuery();
+    public int getLastInsertId(Connection conn) throws SQLException {
+        PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_LAST_INS_ID"));
+        ResultSet rs = ps.executeQuery();
+        int lastId = -1;
+        try {
             while (rs.next()) {
-                cardId = rs.getInt("id");
+                lastId = rs.getInt(1);
             }
-            return cardId;
+            return lastId;
         } catch (SQLException e) {
-            LOG.error("SQL error ", e);
-            return 0;
+            LOG.error("Bad SQL request ", e);
+            return lastId;
         }
     }
 }

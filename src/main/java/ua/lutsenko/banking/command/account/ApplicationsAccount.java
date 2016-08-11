@@ -23,10 +23,10 @@ public class ApplicationsAccount implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         ApplicationDao applicationDao  = DaoFactory.getInstance().getApplicationDao();
         List<Application> applicationList = applicationDao.getApplications();
-
-        wrapper.addNewAttributes("applicationList", applicationList);
+        wrapper.addNewAttribute("applicationList", applicationList);
 
         return "/jsp/adminPages/applicationsList.jsp";
     }

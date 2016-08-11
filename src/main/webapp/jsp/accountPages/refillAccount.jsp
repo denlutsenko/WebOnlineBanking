@@ -13,13 +13,13 @@
 <fmt:setBundle basename="language"/>
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="REFILL_ACCOUNT"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 
 <div align="center">
-    <form action="<c:url value="OnlineBanking24"/>" method="post">
+    <form action="OnlineBanking24/" method="post">
 
         <select name="currCardId" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
@@ -34,7 +34,7 @@
         <input type="text" class="form-control" name="operationSumm" required
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
                oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?" value="amount"/><br/>
-        <input type="hidden" name="ok" value="confirmPayment"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/AccountRefilled"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="REFILL_ACCOUNT"/>>
     </form>
 </div>

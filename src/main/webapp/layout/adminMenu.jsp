@@ -16,23 +16,23 @@
 </head>
 <body>
 <div align="right">
-    <form action="<c:url value="OnlineBanking24/welcome"/>" method="post">
-        <input type="hidden" name="ok" value="logOut"/>
+    <form action="OnlineBanking24/" method="post">
+        <input type="hidden" name="ok" value="sessionEnd"/>
         <input type="submit"  class="btn btn-success" value=<fmt:message key="BTN_LOG_OUT"/>>
     </form>
 </div>
 
 <ul class="headerMenu">
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="blockedAccounts"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/BlockedAccounts"/>
             <input type="submit"  class="btn btn-default btn-lg active"  value=<fmt:message key="BTN_BLOCKEDLIST"/>>
         </form>
     </li>
 
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="applicationsList"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/ApplicationsList"/>
             <input type="submit"  class="btn btn-default btn-lg active"  value=<fmt:message key="BTN_QUERY_FOR_NEW_ACCOUNT"/>>
         </form>
     </li>

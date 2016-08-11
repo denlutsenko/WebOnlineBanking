@@ -1,6 +1,5 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.entity.Account;
 import ua.lutsenko.banking.entity.Condition;
@@ -8,6 +7,7 @@ import ua.lutsenko.banking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,7 +34,8 @@ public class ConditionDao {
     }
 
     /**
-     * This method builds all account conditions of current user.
+     * This method builds all accounts conditions of current user.
+     *
      * @param userId contain user id.
      * @return list of account condition.
      */
@@ -50,11 +51,14 @@ public class ConditionDao {
                 String middleName = rs.getString("middle_name");
                 String accountCode = rs.getString("account_code");
                 String accountCurrency = rs.getString("currency");
-                Date deadLine = rs.getDate("deadline");
+                Date tmpDeadLine = rs.getDate("deadline");
+                LocalDate deadLine = tmpDeadLine.toLocalDate();
                 String type = rs.getString("type");
+
                 User user = new User(firstName, lastName, middleName);
                 Account account = new Account(user, accountCode, accountCurrency);
                 Condition condition = new Condition(account, type);
+
                 condition.setDeadLine(deadLine);
                 conditionsList.add(condition);
             }
@@ -67,8 +71,9 @@ public class ConditionDao {
 
     /**
      * This method builds all account conditions by account type(CREDIT of DEBIT).
-     * @param userId contain userId.
-     * @param cardType contain type of card.
+     *
+     * @param userId   contain userId.
+     * @param cardType contain type of card(CREDIT or DEBIT).
      * @return list of account condition.
      */
     public List<Condition> getConditions(int userId, String cardType) {
@@ -88,12 +93,13 @@ public class ConditionDao {
                 double defaultBalance = rs.getDouble("default_balance");
                 double percentOfWithdrawal = rs.getDouble("percentOfWithdrawal");
                 double monthlyPercent = rs.getDouble("monthlyPercent");
-                Date deadLine = rs.getDate("deadline");
+                Date tmpDeadLine = rs.getDate("deadline");
+                LocalDate deadLine = tmpDeadLine.toLocalDate();
                 String accountType = rs.getString("type");
 
                 User user = new User(firstName, lastName, middleName);
-
                 Account account = new Account(user, accountCode, currency);
+
                 account.setCurrentBalance(currentBalance);
                 account.setDefaultBalance(defaultBalance);
 
@@ -106,16 +112,17 @@ public class ConditionDao {
             return conditionsList;
         } catch (SQLException e) {
             LOG.error("SQL error. Can't get conditions, ", e);
-            return null; // TO DO!!!
+            return null;
         }
     }
 
     /**
      * This method builds list of all active user accounts.
+     *
      * @param id parameter contain current user ID.
      * @return list of user active accounts.
      */
-    public List<Condition> showActiveAccounts(int id){
+    public List<Condition> showActiveAccounts(int id) {
         List<Condition> activeAccounts = new ArrayList<>();
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("SELECT_ACTIVE_ACCOUNTS"));
@@ -129,19 +136,17 @@ public class ConditionDao {
                 String accountType = rs.getString("type");
                 String accountCode = rs.getString("account_code");
                 double currentBalance = rs.getDouble("current_balance");
-
                 String currency = rs.getString("currency");
-                Date deadLine = rs.getDate("deadline");
+                Date tmpDeadLine = rs.getDate("deadline");
+                LocalDate deadLine = tmpDeadLine.toLocalDate();
 
                 User user = new User(firstName, lastName, middleName);
-
                 Account account = new Account(user, accountCode, currency);
                 account.setId(accountId);
                 account.setCurrentBalance(currentBalance);
 
                 Condition condition = new Condition(account, accountType);
                 condition.setDeadLine(deadLine);
-
                 activeAccounts.add(condition);
             }
             return activeAccounts;
@@ -153,13 +158,13 @@ public class ConditionDao {
 
     /**
      * This method find withdrawal percent and return value.
+     *
      * @param accountId parameter contain account id.
      * @return value of withdrawal percent.
      */
     public double getWithdrawalPercent(int accountId) {
         double result = 0.00;
         try (Connection conn = ds.getConnection()) {
-
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("GET_WITHDRAWAL_PERCENT"));
             ps.setInt(1, accountId);
             ResultSet rs = ps.executeQuery();
@@ -167,28 +172,31 @@ public class ConditionDao {
                 result = rs.getDouble("percentOfWithdrawal");
             }
         } catch (SQLException e) {
-            LOG.error("SQL error, " + e);
+            LOG.error("SQL error, getWithdrawalPercent ", e);
         }
         return result;
     }
 
     /**
      * This method creates conditions to account.
-     * @parameters contains all necessary information to make operation.
+     *
      * @return boolean flag.
+     * @parameters contains all necessary information to make operation.
      */
-    public boolean createConditions(int accountId,  double accountWPercent,  double monthlyPercent, Date accountDeadline,  String type) throws SQLException {
-        try (Connection conn = ds.getConnection()) {
+    public boolean createConditions(Connection conn, int accountId, double accountWPercent, double monthlyPercent,
+                                    String accountDeadline, String type) throws SQLException {
+        try {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_CONDITIONS"));
             ps.setInt(1, accountId);
             ps.setDouble(2, accountWPercent);
             ps.setDouble(3, monthlyPercent);
-            ps.setDate(4, accountDeadline);
+            Date accDeadLine = Date.valueOf(accountDeadline);
+            ps.setDate(4, accDeadLine);
             ps.setString(5, type);
             ps.execute();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOG.error("Bad SQL request, ", e);
             return false;
         }
     }

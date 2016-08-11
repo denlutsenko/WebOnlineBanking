@@ -13,13 +13,13 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="HISTORY"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 
 
-<form action="<c:url value="OnlineBanking24"/>" method="POST">
+<form action="OnlineBanking24/" method="POST">
     <select name="idCard" class="chargeCard" required
             oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
             oninput="setCustomValidity('')">
@@ -34,7 +34,7 @@
         </c:forEach>
     </select>
 
-    <input type="hidden" name="ok" value="currentHistory"/>
+    <input type="hidden" name="ok" value="PersonalCabinet/CurrentHistory"/>
     <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REFRESH"/>>
 </form>
 

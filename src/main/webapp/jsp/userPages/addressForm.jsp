@@ -12,11 +12,11 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="ADDRESS_FORM"/></title>
 </head>
 <body>
 
-<form action="/bank24/managements/openingNewAccount/addressForm" method="post">
+<form action="OnlineBanking24/" method="post">
 
     <fmt:message key="INPUT_COUNTRY"/>
     <br/> <input type="text" name="country" required
@@ -36,7 +36,7 @@
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_HOUSE_NUMBER"/>)"
                 oninput="setCustomValidity('')" value=""/>
 
-    <input type="hidden" name="ok" value="newAddress"/>
+    <input type="hidden" name="ok" value="PersonalCabinet/Form"/>
     <input type="submit" name="ok" value=<fmt:message key="BTN_NEXT"/>>
 </form>
 

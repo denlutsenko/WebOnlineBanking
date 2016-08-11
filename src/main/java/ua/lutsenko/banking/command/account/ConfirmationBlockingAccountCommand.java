@@ -20,12 +20,13 @@ public class ConfirmationBlockingAccountCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         String cardNumber = wrapper.findParameterByName("cardNumber");
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
 
         boolean isBlocked = accountDao.blockAccount(cardNumber);
-
         if (isBlocked) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/userPages/personalCabinet.jsp";
         } else {
             return "/jsp/reportPages/errorPage.jsp";

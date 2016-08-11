@@ -20,6 +20,7 @@ public class LoginCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) {
+
         String login = wrapper.findParameterByName("email");
         String password = wrapper.findParameterByName("password");
 

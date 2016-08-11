@@ -16,35 +16,35 @@
 </head>
 <body>
 <div align="right">
-    <form action="<c:url value="OnlineBanking24/welcome"/>" method="post">
-        <input type="hidden" name="ok" value="logOut"/>
+    <form action="OnlineBanking24/" method="post">
+        <input type="hidden" name="ok" value="sessionEnd"/>
         <input type="submit"  class="btn btn-success" value=<fmt:message key="BTN_LOG_OUT"/>>
     </form>
 </div>
 
 <ul class="headerMenu">
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="userAccounts"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/Accounts"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message key="BTN_MY_ACCOUNTS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="userOperations"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/Operations"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message
                     key="BTN_OPERATION_BY_CARDS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="userPayments"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/Payments"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message key="BTN_MY_PAYMENTS"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="userManagement"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/Management"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message
                     key="BTN_ACCOUNT_MANAGEMENTS"/>>
         </form>

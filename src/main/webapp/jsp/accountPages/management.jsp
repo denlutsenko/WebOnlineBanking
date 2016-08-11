@@ -12,26 +12,26 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="ACCOUNT_MANAGEMENTS"/></title>
 </head>
 <body>
 
 <ul class="managementMenu">
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="newApplication"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/NewAccountApplication"/>
             <input type="submit" name="ok" value=<fmt:message key="OPEN_NEW_ACCOUNT"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="lockAccount"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/LockAccount"/>
             <input type="submit" name="ok" value=<fmt:message key="LOCK_ACCOUNT"/>>
         </form>
     </li>
     <li>
-        <form action="<c:url value="OnlineBanking24"/>" method="post">
-            <input type="hidden" name="ok" value="refillBalance"/>
+        <form action="OnlineBanking24/" method="post">
+            <input type="hidden" name="ok" value="PersonalCabinet/RefillBalance"/>
             <input type="submit" name="ok" value=<fmt:message key="REFILL_ACCOUNT"/>>
         </form>
     </li>

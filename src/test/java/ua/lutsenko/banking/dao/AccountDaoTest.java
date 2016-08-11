@@ -1,58 +1,47 @@
 package ua.lutsenko.banking.dao;
 
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Matchers;
 import util.DsUtil;
 
-import java.sql.Timestamp;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
 
 /**
  * Created by Denis Lutsenko.
  */
 public class AccountDaoTest {
-    private DsUtil dsUtil;
+
     private AccountDao accountDao;
+    private DsUtil dsUtil;
 
-
-    @Test
-    public void getCardCurrency() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         dsUtil = new DsUtil();
         accountDao = new AccountDao(dsUtil.getDs());
     }
 
     @Test
-    public void updateBalance() throws Exception {
+    public void doPayment() throws Exception {
+        int idCard = 1;
+        String operationType = "withdrawal";
+        LocalDateTime dateTime = LocalDateTime.now();
+        double operationSumm = 1;
         accountDao = mock(AccountDao.class);
-        Calendar cal = Calendar.getInstance();
-        Timestamp currDate = new Timestamp(cal.getTimeInMillis());
-        when(accountDao.updateBalance(1, "gg", currDate, 100)).thenReturn(true);
-        assertTrue(accountDao.updateBalance(1, "gg", currDate, 100));
+        when(accountDao.doPayment(idCard, operationType, dateTime, operationSumm)).thenReturn(true);
+        assertTrue(accountDao.doPayment(idCard, operationType, dateTime, operationSumm));
     }
 
     @Test
-    public void blockAccount() throws Exception {
-        accountDao = mock(AccountDao.class);
-        when(accountDao.blockAccount(Matchers.anyString())).thenReturn(true);
-        assertTrue(accountDao.blockAccount(Matchers.anyString()));
+    public void getCardCurrency() throws Exception {
+        assertEquals("UAH", accountDao.getCardCurrency(1));
     }
 
     @Test
-    public void unblockAccount() throws Exception {
-        accountDao = mock(AccountDao.class);
-        when(accountDao.unblockAccount(Matchers.anyString())).thenReturn(true);
-        assertTrue(accountDao.unblockAccount(Matchers.anyString()));
+    public void showBlockedAccounts() throws Exception {
+        assertNotNull(accountDao.showBlockedAccounts());
     }
-
-    @Test
-    public void getAccountId() throws Exception {
-        accountDao = mock(AccountDao.class);
-        when(accountDao.getAccountId(Matchers.anyString())).thenReturn(1);
-        assertTrue(accountDao.getAccountId(Matchers.anyString()) == 1);
-    }
-
 }

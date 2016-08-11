@@ -19,7 +19,7 @@
 <body>
 
 <div>
-  <form name="checkLogin" action="<c:url value="/OnlineBanking24"/>"  method="post">
+  <form name="checkLogin" action="OnlineBanking24/"  method="post">
     <fmt:message key="LOGIN"/>
     <input type="text" class="form-control" name="email"
            required oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_LOGIN"/>)"
@@ -30,7 +30,7 @@
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_PASSWORD"/>)" oninput="setCustomValidity('')"
            value="" pattern="[\w]+"/>
 
-    <input type="hidden" name="ok" value="login"/>
+    <input type="hidden" name="ok" value="PersonalCabinet"/>
     <input type="submit" class="btn btn-success" value= <fmt:message key="LOGIN"/>>
 
   </form>

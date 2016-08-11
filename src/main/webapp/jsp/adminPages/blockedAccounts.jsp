@@ -12,7 +12,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="BLOCKED_ACCOUNTS"/></title>
 </head>
 <body>
 
@@ -31,11 +31,11 @@
 </div>
 
 <div>
-    <form action="<c:url value="OnlineBanking24"/>" method="post">
+    <form action="OnlineBanking24/" method="post">
         <input type="text" name="cardNumber" required
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_WRITE_CARD"/>)"
                oninput="setCustomValidity('')" pattern="[\d]{16}" value=""/><br/>
-        <input type="hidden" name="ok" value="unlockAccount"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/AccountUnlocked"/>
         <input type="submit" name="ok" value=<fmt:message key="BTN_UNLOCK_ACCOUNT"/>>
     </form>
 </div>

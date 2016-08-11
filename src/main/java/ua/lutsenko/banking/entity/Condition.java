@@ -1,16 +1,16 @@
 package ua.lutsenko.banking.entity;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 /**
  * Created by Denis Lutsenko.
  */
 public class Condition {
     private Integer id;
-
     private final Account account;
     private final String type;
-    private Date deadLine;
+    private LocalDate deadLine;
     private double percentOfWithdrawal;
     private double monthlyPercent;
 
@@ -35,11 +35,11 @@ public class Condition {
         return type;
     }
 
-    public Date getDeadLine() {
+    public LocalDate getDeadLine() {
         return deadLine;
     }
 
-    public void setDeadLine(Date deadLine) {
+    public void setDeadLine(LocalDate deadLine) {
         this.deadLine = deadLine;
     }
 

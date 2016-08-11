@@ -1,12 +1,12 @@
 package ua.lutsenko.banking.dao;
 
-
 import org.apache.log4j.Logger;
 import ua.lutsenko.banking.entity.Application;
 import ua.lutsenko.banking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,17 +34,18 @@ public class ApplicationDao {
     /**
      * This method inserts new application.
      *
-     * @return application object.
+     * @return object of application.
      * @parameters contains all necessary data to insert new application.
      */
-    public boolean insertApplication(int userId, String accountType, String accountCurrency, Date currDate,
+    public boolean insertApplication(int userId, String accountType, String accountCurrency, LocalDate currDate,
                                      double accountBalance, String accountStatus) {
         try (Connection conn = ds.getConnection()) {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("INSERT_APPLICATION"));
             ps.setInt(1, userId);
             ps.setString(2, accountType);
             ps.setString(3, accountCurrency);
-            ps.setDate(4, currDate);
+            Date currentDate = Date.valueOf(currDate);
+            ps.setDate(4, currentDate);
             ps.setDouble(5, accountBalance);
             ps.setString(6, accountStatus);
             ps.execute();
@@ -76,7 +77,8 @@ public class ApplicationDao {
                 String type = rs.getString("type");
                 String currency = rs.getString("currency");
                 double balance = rs.getDouble("balance");
-                Date date = rs.getDate("date");
+                Date tmpDate = rs.getDate("date");
+                LocalDate date = tmpDate.toLocalDate();
 
                 User user = new User(firstName, lastName, middleName);
                 user.setId(userId);
@@ -84,7 +86,6 @@ public class ApplicationDao {
                 Application application = new Application(user, type, currency, date);
                 application.setId(id);
                 application.setBalance(balance);
-
                 applicationsList.add(application);
             }
             return applicationsList;
@@ -97,7 +98,7 @@ public class ApplicationDao {
     /**
      * This method updates status of selected application.
      *
-     * @param id     contain id of selected application.
+     * @param id     contain ID of selected application.
      * @param status contain new value of status.
      * @return boolean flag.
      */

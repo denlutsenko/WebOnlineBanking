@@ -1,7 +1,5 @@
 package ua.lutsenko.banking.filter;
 
-
-
 import ua.lutsenko.banking.entity.User;
 
 import javax.servlet.*;
@@ -16,6 +14,7 @@ import java.util.EnumSet;
 
 /**
  * Class filter. Checks client data and provides user access or admin access.
+ * Filter limits unauthorized access to user or admin pages.
  */
 public class CheckAuthFilter implements Filter {
     private String checkAuthFilter;

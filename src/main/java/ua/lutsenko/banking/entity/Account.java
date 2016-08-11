@@ -1,6 +1,7 @@
 package ua.lutsenko.banking.entity;
 
-import java.sql.Date;
+
+import java.time.LocalDate;
 
 /**
  * Created by Denis Lutsenko.
@@ -10,8 +11,7 @@ public class Account {
     private final User user;
     private final String accountCode;
     private final String currency;
-
-    private Date openingDate;
+    private LocalDate openingDate;
     private double currentBalance;
     private double defaultBalance;
     private boolean isBlocked;
@@ -42,11 +42,11 @@ public class Account {
         return currency;
     }
 
-    public Date getOpeningDate() {
+    public LocalDate getOpeningDate() {
         return openingDate;
     }
 
-    public void setOpeningDate(Date openingDate) {
+    public void setOpeningDate(LocalDate openingDate) {
         this.openingDate = openingDate;
     }
 

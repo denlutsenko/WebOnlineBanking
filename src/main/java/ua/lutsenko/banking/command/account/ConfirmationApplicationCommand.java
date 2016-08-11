@@ -6,7 +6,7 @@ import ua.lutsenko.banking.dao.ApplicationDao;
 import ua.lutsenko.banking.dao.DaoFactory;
 import ua.lutsenko.banking.entity.User;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 /**
  * Created by Denis Lutsenko.
@@ -24,14 +24,15 @@ public class ConfirmationApplicationCommand implements Command {
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         String accountType = wrapper.findParameterByName("accountType");
         String accountCurrency = wrapper.findParameterByName("accountCurrency");
-        Date currDate = Date.valueOf(java.time.LocalDate.now());
+
+        LocalDate currDate = LocalDate.now();
         double accountBalance = Double.parseDouble(wrapper.findParameterByName("accountBalance"));
         ApplicationDao applicationDao = DaoFactory.getInstance().getApplicationDao();
 
         boolean isInsertedApplication = applicationDao.insertApplication(userId, accountType, accountCurrency,
                 currDate, accountBalance, accountStatus);
-
         if (isInsertedApplication) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/userPages/personalCabinet.jsp";
         } else {
             return "/jsp/reportPages/error.jsp";

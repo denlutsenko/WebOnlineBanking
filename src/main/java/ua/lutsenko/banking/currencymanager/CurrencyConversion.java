@@ -46,9 +46,9 @@ public class CurrencyConversion {
     /**
      * Tis method recalculate new value of operation sum(value plus percent).
      *
-     * @param opSum
-     * @param percent
-     * @return
+     * @param opSum operation sum.
+     * @param percent percent of withdrawal.
+     * @return new value(sum).
      */
     public double calculateWithdrawalPercent(double opSum, double percent) {
         double result = opSum;

@@ -22,10 +22,12 @@ public class OperationsHistoryCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
         List<Condition> accountList = conditionDao.showActiveAccounts(userId);
-        wrapper.addNewAttributes("accountList", accountList);
+        wrapper.addNewAttribute("accountList", accountList);
 
         return "/jsp/accountPages/operationsHistory.jsp";
     }

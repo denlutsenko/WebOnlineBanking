@@ -22,13 +22,13 @@ public class BlockAccountCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) {
+
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
-
         List<Condition> activeAccounts = conditionDao.showActiveAccounts(userId);
-
         if (activeAccounts != null) {
-            wrapper.addNewAttributes("activeAccounts", activeAccounts);
+            wrapper.addNewAttribute("activeAccounts", activeAccounts);
             return "/jsp/accountPages/blockCardForm.jsp";
         } else {
             return "/jsp/reportPages/error.jsp";

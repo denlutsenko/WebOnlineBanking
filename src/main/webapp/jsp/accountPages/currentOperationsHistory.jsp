@@ -12,12 +12,12 @@
 
 <html>
 <head>
-  <title></title>
+  <title><fmt:message key="HISTORY"/></title>
 </head>
 <body>
 <fmt:message key="PAYMENTS_HISTORY"/>
 
-<form action="<c:url value="OnlineBanking24"/>" method="POST">
+<form action="OnlineBanking24/" method="POST">
   <select name="idCard" class="chargeCard">
     <c:forEach items="${requestScope.accountList}" var="accountElem">
         <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode}
@@ -25,7 +25,7 @@
     </c:forEach>
   </select>
 
-  <input type="hidden" name="ok" value="currentHistory"/>
+  <input type="hidden" name="ok" value="PersonalCabinet/CurrentHistory"/>
   <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REFRESH"/>>
 </form>
 

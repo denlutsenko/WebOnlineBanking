@@ -22,7 +22,7 @@ public class ManagementCommand implements Command {
     public String execute(RequestWrapper wrapper) throws SQLException {
 
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
-        wrapper.addNewAttributes("userId", userId);
+        wrapper.addNewAttribute("userId", userId);
 
         AddressDao addressDao = DaoFactory.getInstance().getAddressDao();
         boolean isAddressExists = addressDao.isAddressExist(userId);

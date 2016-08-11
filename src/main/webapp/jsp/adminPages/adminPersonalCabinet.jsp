@@ -12,9 +12,11 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="PERSONAL_CABINET"/></title>
 </head>
 <body>
-
+<h4><fmt:message key="PERSONAL_CABINET"/></h4>
+<H5>${sessionScope.user.firstName} ${sessionScope.user.lastName}</H5>
+<h2 ALIGN="center"><fmt:message key="${requestScope.msg}"/></h2>
 </body>
 </html>

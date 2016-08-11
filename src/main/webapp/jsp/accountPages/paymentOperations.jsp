@@ -11,14 +11,14 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
-    <title>Title</title>
+    <title><fmt:message key="MY_PAYMENTS"/></title>
 </head>
 <body>
 
 <div class="cardsOp">
     <fmt:message key="INNER_TRANSFER"/>
     <br><fmt:message key="FROM_CARD"/>
-    <form method="post" action="<c:url value="OnlineBanking24"/>">
+    <form method="post" action="OnlineBanking24/">
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
@@ -47,14 +47,14 @@
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
                oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?"/><br/>
 
-        <input type="hidden" name="ok" value="innerTransfer"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/InnerTransferSuccess"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_INNER_TRANSFER"/>>
     </form>
     <br/><br/>
 
     <fmt:message key="WITHDRAWAL"/>
     <br><fmt:message key="FROM_CARD"/>
-    <form method="post" action="<c:url value="OnlineBanking24"/>">
+    <form method="post" action="OnlineBanking24/">
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
@@ -70,13 +70,13 @@
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
                oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?"/><br/>
 
-        <input type="hidden" name="ok" value="withdrawal"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/WithdrawalSuccess"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_TRANSFER_MONEY"/>>
     </form>
     <br>
 
     <fmt:message key="DO_PAYMENT"/>
-    <form method="post" action="<c:url value="OnlineBanking24"/>">>
+    <form method="post" action="OnlineBanking24/">>
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
@@ -96,7 +96,7 @@
         <fmt:message
                 key="INPUT_ACCOUNT_NUMBER"/>><br/>
 
-        <input type="hidden" name="ok" value="payment"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/PaymentSuccess"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="CONFIRM_PAYMENT"/>>
     </form>
 </div>

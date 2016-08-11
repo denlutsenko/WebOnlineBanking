@@ -25,19 +25,19 @@ public class CurrentHistoryCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
 
         String idCard = wrapper.findParameterByName("idCard");
         int currCardId = Integer.parseInt(idCard);
+        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
 
         OperationDao operationDao = DaoFactory.getInstance().getOperationDao();
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
         List<Operation> historyList = operationDao.showAccountHistory(currCardId);
         List<Condition> accountList = conditionDao.showActiveAccounts(userId);
 
-        wrapper.addNewAttributes("currIdcard", idCard);
-        wrapper.addNewAttributes("accountList", accountList);
-        wrapper.addNewAttributes("historyList", historyList);
+        wrapper.addNewAttribute("currIdcard", idCard);
+        wrapper.addNewAttribute("accountList", accountList);
+        wrapper.addNewAttribute("historyList", historyList);
 
         return "/jsp/accountPages/currentOperationsHistory.jsp";
 

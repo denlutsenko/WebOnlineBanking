@@ -20,6 +20,7 @@ public class AddressCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         String country = wrapper.findParameterByName("country");
         String city = wrapper.findParameterByName("city");

@@ -6,8 +6,7 @@ import ua.lutsenko.banking.dao.AccountDao;
 import ua.lutsenko.banking.dao.DaoFactory;
 
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 
 /**
  * Created by Denis Lutsenko.
@@ -22,18 +21,18 @@ public class ConfirmationRefillingCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         String currCardId = wrapper.findParameterByName("currCardId");
         String operationType = wrapper.findParameterByName("operationType");
         String operationSumm = wrapper.findParameterByName("operationSumm");
         int cardId = Integer.parseInt(currCardId);
         double opSumm = Double.parseDouble(operationSumm);
-        Calendar cal = Calendar.getInstance();
-        Timestamp currDate = new Timestamp(cal.getTimeInMillis());
+        LocalDateTime currDate = LocalDateTime.now();
+
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
-
         boolean isUpdatedBalance = accountDao.updateBalance(cardId, operationType, currDate, opSumm);
-
         if (isUpdatedBalance) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/userPages/personalCabinet.jsp";
         } else {
             return "/jsp/reportPages/errorPage.jsp";

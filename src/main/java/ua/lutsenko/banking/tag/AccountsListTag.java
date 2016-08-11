@@ -15,7 +15,7 @@ import static javax.servlet.jsp.tagext.Tag.SKIP_BODY;
  */
 
 /**
- * Personal tag class. Methods of this class builds table to show clients account data.
+ * Personal tag class. Methods of this class builds table to show client account data.
  */
 public class AccountsListTag extends TagSupport {
     private Condition accountRootElem;
@@ -37,11 +37,11 @@ public class AccountsListTag extends TagSupport {
     public int doStartTag() throws JspException {
         ResourceBundle rb = ResourceBundle.getBundle(lang);
         String currentBalance = rb.getString("CURRENT_BALANCE");
-        String withDrawlPercent = rb.getString("CURRENT_BALANCE");
+        String withDrawlPercent = rb.getString("WITHDRAWAL_PERCENT");
         String monthlyPercent = rb.getString("MONTHLY_PERCENT");
         try {
             JspWriter out = pageContext.getOut();
-            out.write("<div><b> " + accountRootElem.getType() + accountRootElem.getAccount().getAccountCode() + "</b></div>");
+            out.write("<div><b> " + accountRootElem.getType() +": " + accountRootElem.getAccount().getAccountCode() + "</b></div>");
             out.write("<div>" + currentBalance + accountRootElem.getAccount().getCurrentBalance() +
                     accountRootElem.getAccount().getCurrency() + "</div>");
             out.write("<div>" + withDrawlPercent + accountRootElem.getPercentOfWithdrawal() + "%</div>");

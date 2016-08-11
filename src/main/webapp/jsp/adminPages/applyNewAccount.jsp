@@ -12,7 +12,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="NEW_ACCOUNT"/></title>
 </head>
 <body>
 
@@ -35,7 +35,7 @@
 <br/>
 
 <td><fmt:message key="FILL_FORM"/></td>
-<form action="<c:url value="OnlineBanking24"/>" method="post">
+<form action="OnlineBanking24/" method="post">
 
     <table border="1">
         <tr>
@@ -81,7 +81,7 @@
     </table>
 
 
-    <input type="hidden" name="ok" value="confirmNewAccount"/>
+    <input type="hidden" name="ok" value="PersonalCabinet/AccountCreated"/>
     <input type="submit" name="ok" value=<fmt:message key="BTN_CREATE_AN_ACCOUNT"/>>
 </form>
 

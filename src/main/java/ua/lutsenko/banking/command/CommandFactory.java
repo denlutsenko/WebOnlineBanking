@@ -13,9 +13,11 @@ import java.util.Map;
  * Created by Denis Lutsenko.
  */
 
+/**
+ * This is class which creates new CommandFactory(INSTANCE) and creates new Command.
+ */
 public class CommandFactory {
     private final static CommandFactory INSTANCE = new CommandFactory();
-
     private Map<String, Command> commandMap = new HashMap<>();
 
     public static synchronized CommandFactory getInstance() {
@@ -23,29 +25,30 @@ public class CommandFactory {
     }
 
     {
-        commandMap.put("login", new LoginCommand());
-        commandMap.put("registration", new RegistrationCommand());
-        commandMap.put("refillBalance", new RefillBalanceCommand());
-        commandMap.put("newAddress", new AddressCommand());
-        commandMap.put("confirmNewAccount", new ConfirmationAccountCommand());
-        commandMap.put("userAccounts", new AllAccountsCommand());
-        commandMap.put("userManagement", new ManagementCommand());
-        commandMap.put("newApplication", new NewApplicationCommand());
-        commandMap.put("saveNewApplication", new ConfirmationApplicationCommand());
-        commandMap.put("confirmPayment", new ConfirmationRefillingCommand());
-        commandMap.put("lockAccount", new BlockAccountCommand());
-        commandMap.put("userPayments", new OperationsListCommand());
-        commandMap.put("confirmLocking", new ConfirmationBlockingAccountCommand());
-        commandMap.put("innerTransfer", new InnerTransferCommand());
-        commandMap.put("withdrawal", new WithdrawalCommand());
-        commandMap.put("payment", new PaymentCommand());
-        commandMap.put("userOperations", new OperationsHistoryCommand());
-        commandMap.put("currentHistory", new CurrentHistoryCommand());
-        commandMap.put("blockedAccounts", new BlockedAccountsCommand());
-        commandMap.put("applicationsList", new ApplicationsAccount());
-        commandMap.put("unlockAccount", new ConfirmationUnlockingCommand());
-        commandMap.put("declineApplication", new DecliningApplicationCommand());
-        commandMap.put("createAccount", new NewAccountCommand());
+        commandMap.put("PersonalCabinet", new LoginCommand());
+        commandMap.put("RegistrationSuccess", new RegistrationCommand());
+        commandMap.put("PersonalCabinet/RefillBalance", new RefillBalanceCommand());
+        commandMap.put("PersonalCabinet/Form", new AddressCommand());
+        commandMap.put("PersonalCabinet/AccountCreated", new ConfirmationAccountCommand());
+        commandMap.put("PersonalCabinet/Accounts", new AllAccountsCommand());
+        commandMap.put("PersonalCabinet/Management", new ManagementCommand());
+        commandMap.put("PersonalCabinet/NewAccountApplication", new NewApplicationCommand());
+        commandMap.put("PersonalCabinet/ApplicationSent", new ConfirmationApplicationCommand());
+        commandMap.put("PersonalCabinet/AccountRefilled", new ConfirmationRefillingCommand());
+        commandMap.put("PersonalCabinet/LockAccount", new BlockAccountCommand());
+        commandMap.put("PersonalCabinet/Payments", new OperationsListCommand());
+        commandMap.put("PersonalCabinet/CardLocked", new ConfirmationBlockingAccountCommand());
+        commandMap.put("PersonalCabinet/InnerTransferSuccess", new InnerTransferCommand());
+        commandMap.put("PersonalCabinet/WithdrawalSuccess", new WithdrawalCommand());
+        commandMap.put("PersonalCabinet/PaymentSuccess", new PaymentCommand());
+        commandMap.put("PersonalCabinet/Operations", new OperationsHistoryCommand());
+        commandMap.put("PersonalCabinet/CurrentHistory", new CurrentHistoryCommand());
+        commandMap.put("PersonalCabinet/BlockedAccounts", new BlockedAccountsCommand());
+        commandMap.put("PersonalCabinet/ApplicationsList", new ApplicationsAccount());
+        commandMap.put("PersonalCabinet/AccountUnlocked", new ConfirmationUnlockingCommand());
+        commandMap.put("PersonalCabinet/ApplicationDeclined", new DecliningApplicationCommand());
+        commandMap.put("PersonalCabinet/CreateAccount", new NewAccountCommand());
+        commandMap.put("sessionEnd", new LogOutCommand());
 
     }
 

@@ -12,11 +12,11 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="REGISTRATION"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
-<form action="<c:url value="OnlineBanking24"/>" method="post">
+<form action="OnlineBanking24/" method="post">
 
    <fmt:message key="ENTER_FNAME"/>
     <input type="text" class="form-control" name="firstName" required
@@ -48,7 +48,7 @@
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_PASSWORD"/>)" oninput="setCustomValidity('')"
            pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)|(0-9)*" value=""/><br/>
 
-    <input type="hidden" name="ok" value="registration"/>
+    <input type="hidden" name="ok" value="RegistrationSuccess"/>
     <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REGISTRATION"/>/>
 
 

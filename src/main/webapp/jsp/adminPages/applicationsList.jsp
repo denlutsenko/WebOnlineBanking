@@ -12,7 +12,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="APPLICATIONS"/></title>
 </head>
 <body>
 
@@ -39,19 +39,19 @@
             <td>${applicationElem.currency}</td>
             <td>${applicationElem.date}</td>
             <td>
-                <form action="<c:url value="OnlineBanking24"/>" method="post">
+                <form action="OnlineBanking24/" method="post">
                     <input type="hidden" name="applicationId" value="${applicationElem.id}">
                     <input type="hidden" name="userId" value="${applicationElem.user.id}">
                     <input type="hidden" name="type" value="${applicationElem.type}">
                     <input type="hidden" name="balance" value="${applicationElem.balance}">
                     <input type="hidden" name="currency" value="${applicationElem.currency}">
 
-                    <input type="hidden" name="ok" value="createAccount"/>
+                    <input type="hidden" name="ok" value="PersonalCabinet/CreateAccount"/>
                     <input type="submit" name="ok" value=<fmt:message key="APPROVE_QUERY"/>>
                 </form>
-                <form action="<c:url value="OnlineBanking24"/>" method="post">
+                <form action="OnlineBanking24/" method="post">
                     <input type="hidden" name="applicationId" value="${applicationElem.id}">
-                    <input type="hidden" name="ok" value="declineApplication"/>
+                    <input type="hidden" name="ok" value="PersonalCabinet/ApplicationDeclined"/>
                     <input type="submit" name="ok" value=<fmt:message key="REJECT_QUERY"/>>
                 </form>
             </td>

@@ -1,6 +1,6 @@
 package ua.lutsenko.banking.entity;
 
-import java.sql.Timestamp;
+import java.time.LocalDate;
 
 /**
  * Created by Denis Lutsenko.
@@ -9,7 +9,7 @@ public class Operation {
     private Integer id;
     private final Account account;
     private String operationType;
-    private Timestamp operationDate;
+    private LocalDate operationDate;
     private double operationSumm;
 
     public Operation(Account account) {
@@ -36,11 +36,11 @@ public class Operation {
         this.operationType = operationType;
     }
 
-    public Timestamp getOperationDate() {
+    public LocalDate getOperationDate() {
         return operationDate;
     }
 
-    public void setOperationDate(Timestamp operationDate) {
+    public void setOperationDate(LocalDate operationDate) {
         this.operationDate = operationDate;
     }
 

@@ -26,11 +26,6 @@ public class RequestWrapper {
         requestAttributesMap = new HashMap<>();
     }
 
-    public void addParameter(String key, String value) {
-        requestParametersMap.put(key, value);
-
-    }
-
     public void addAttrToSession(String key, Object value) {
         session.setAttribute(key, value);
     }
@@ -43,9 +38,8 @@ public class RequestWrapper {
         while (parametersList.hasMoreElements()) {
             String paramName = (String) parametersList.nextElement();
             String[] paramValues = request.getParameterValues(paramName);
-            for (int i = 0; i < paramValues.length; i++) {
-
-                requestParametersMap.put(paramName, paramValues[i]);
+            for (String paramValue : paramValues) {
+                requestParametersMap.put(paramName, paramValue);
             }
         }
     }
@@ -85,7 +79,7 @@ public class RequestWrapper {
      * @param key   attribute name.
      * @param value attribute value.
      */
-    public void addNewAttributes(String key, Object value) {
+    public void addNewAttribute(String key, Object value) {
         requestAttributesMap.put(key, value);
     }
 

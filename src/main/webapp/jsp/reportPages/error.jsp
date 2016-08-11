@@ -17,7 +17,7 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="ERROR"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>

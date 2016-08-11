@@ -5,12 +5,12 @@
 
 <html>
 <head>
-    <title></title>
+    <title><fmt:message key="APPLICATION_FORM"/></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
 </head>
 <body>
 <div align="center">
-    <form action="<c:url value="OnlineBanking24"/>" method="post">
+    <form action="OnlineBanking24/" method="post">
 
         <fmt:message key="SPECIFY_TYPE_OF_ACCOUNT"/>
         <input type="text" class="form-control" name="accountType" required
@@ -28,9 +28,7 @@
                oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_AMOUNT"/>)"
                oninput="setCustomValidity('')"
                pattern="[\d]+[\.]?[\d]{1,2}?" value=""/>
-
-
-        <input type="hidden" name="ok" value="saveNewApplication"/>
+        <input type="hidden" name="ok" value="PersonalCabinet/ApplicationSent"/>
         <input type="submit" class="btn btn-success" value=<fmt:message key="SEND_REQUEST"/>>
     </form>
 </div>

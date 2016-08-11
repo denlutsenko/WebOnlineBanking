@@ -13,18 +13,11 @@ import static org.junit.Assert.*;
  */
 public class UserDaoTest {
     private UserDao userDao;
+
     @Before
     public void setUp() throws Exception {
         DsUtil dsUtil = new DsUtil();
         userDao = new UserDao(dsUtil.getDs());
-    }
-
-
-    @Test
-    public void exist() throws Exception {
-        String email = "den.lutsenko@gmail.com";
-        String password = "d";
-        assertTrue(userDao.exist(email, password));
     }
 
     @Test
@@ -39,6 +32,13 @@ public class UserDaoTest {
     }
 
     @Test
+    public void exist() throws Exception {
+        String email = "den.lutsenko@gmail.com";
+        String password = "d";
+        assertTrue(userDao.exist(email, password));
+    }
+
+    @Test
     public void getUserData() throws Exception {
         String email = "den.lutsenko@gmail.com";
         String password = "d";
@@ -46,10 +46,10 @@ public class UserDaoTest {
         assertNotNull(user);
     }
 
-
     @After
     public void tearDown() throws Exception {
-
+        String email = "a@gmail.com";
+        String password = "ppp";
+        assertTrue(userDao.deleteUser(email, password));
     }
-
 }

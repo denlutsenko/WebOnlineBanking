@@ -3,7 +3,6 @@ package ua.lutsenko.banking.command.account;
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
 
-
 /**
  * Created by Denis Lutsenko.
  */

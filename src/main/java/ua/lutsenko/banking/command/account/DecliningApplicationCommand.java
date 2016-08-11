@@ -19,10 +19,12 @@ public class DecliningApplicationCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         int id = Integer.parseInt(wrapper.findParameterByName("applicationId"));
         ApplicationDao applicationDao = DaoFactory.getInstance().getApplicationDao();
         boolean isDeleted = applicationDao.deleteApplication(id);
         if (isDeleted) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/adminPages/adminPersonalCabinet.jsp";
         } else {
             return "/jsp/reportPages/errorPage.jsp";

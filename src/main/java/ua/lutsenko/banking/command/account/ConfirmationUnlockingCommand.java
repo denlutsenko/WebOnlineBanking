@@ -20,12 +20,12 @@ public class ConfirmationUnlockingCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         String accountCode = wrapper.findParameterByName("cardNumber");
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
-
         boolean isUnblocked = accountDao.unblockAccount(accountCode);
-
         if (isUnblocked) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/adminPages/adminPersonalCabinet.jsp";
         } else {
             return "/jsp/reportPages/error.jsp";

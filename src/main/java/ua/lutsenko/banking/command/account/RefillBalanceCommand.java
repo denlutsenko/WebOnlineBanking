@@ -1,4 +1,5 @@
 package ua.lutsenko.banking.command.account;
+
 import ua.lutsenko.banking.command.Command;
 import ua.lutsenko.banking.command.RequestWrapper;
 import ua.lutsenko.banking.dao.ConditionDao;
@@ -22,10 +23,11 @@ public class RefillBalanceCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
+
         int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
         List<Condition> accountList = conditionDao.showActiveAccounts(userId);
-        wrapper.addNewAttributes("accountList", accountList);
+        wrapper.addNewAttribute("accountList", accountList);
 
         return "/jsp/accountPages/refillAccount.jsp";
     }

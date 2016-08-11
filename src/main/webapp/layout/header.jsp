@@ -17,11 +17,14 @@
 
 <html>
 <head>
-    <title></title>
     <link href="<c:url value="/css/bootstrap.min.css"/>" rel="stylesheet">
-
 </head>
 <body>
+
+<c:if test="${empty requestScope.msg}">
+    <c:set var="msg" value="DEFAULT" scope="request"/>
+</c:if>
+
 <div align="right">
     <a href="?language=ru_RU"><fmt:message key="RUS"/></a>
     <a href="?language=en_US"><fmt:message key="ENG"/></a>

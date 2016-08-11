@@ -5,11 +5,9 @@ package ua.lutsenko.banking.entity;
  */
 public class User {
     private Integer id;
-
     private final String firstName;
     private final String lastName;
     private final String middleName;
-
     private String email;
     private String password;
     private String phoneNumber;
