@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  */
 public class DaoFactory {
     private static final Logger LOG = Logger.getLogger(DaoFactory.class);
-    private static DaoFactory INSTANCE = null;
+    private static DaoFactory INSTANCE;
     private DataSource ds;
 
     /**
@@ -36,7 +36,7 @@ public class DaoFactory {
             try {
                 INSTANCE = new DaoFactory();
             } catch (NamingException ex) {
-                LOG.error("Bad INSTANCE " + ex);
+                LOG.error("Bad INSTANCE ", ex);
             }
         }
         return INSTANCE;

@@ -17,10 +17,14 @@ import java.util.Map;
  * This is class which creates new CommandFactory(INSTANCE) and creates new Command.
  */
 public class CommandFactory {
-    private final static CommandFactory INSTANCE = new CommandFactory();
+    private static CommandFactory INSTANCE;
     private Map<String, Command> commandMap = new HashMap<>();
 
+    private CommandFactory() {
+    }
+
     public static synchronized CommandFactory getInstance() {
+        if (INSTANCE == null) INSTANCE = new CommandFactory();
         return INSTANCE;
     }
 
