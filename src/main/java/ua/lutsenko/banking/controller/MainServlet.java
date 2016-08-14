@@ -45,9 +45,9 @@ public class MainServlet extends HttpServlet {
         wrapper.extractParamValues();
         try {
             String path = command.execute(wrapper);
-            ServletContext context = request.getServletContext();
-            context.setAttribute("path", path);
-            context.setAttribute("wrapper", wrapper);
+            HttpSession session = request.getSession(true);
+            session.setAttribute("path", path);
+            session.setAttribute("wrapper", wrapper);
         } catch (SQLException e) {
             LOG.error("DBError", e);
         }
@@ -60,8 +60,8 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException,
             IOException {
-        ServletContext context = request.getServletContext();
-        ((RequestWrapper) context.getAttribute("wrapper")).insertAttributes();
-        request.getRequestDispatcher((String) context.getAttribute("path")).forward(request, response);
+        HttpSession session = request.getSession(true);
+        ((RequestWrapper) session.getAttribute("wrapper")).insertAttributes();
+        request.getRequestDispatcher((String) session.getAttribute("path")).forward(request, response);
     }
 }

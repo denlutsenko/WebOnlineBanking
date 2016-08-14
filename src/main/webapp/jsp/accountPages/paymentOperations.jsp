@@ -29,7 +29,6 @@
             </c:forEach>
         </select><br>
 
-
         <br/><fmt:message key="TO_CARD"/><br/>
         <select name="idToCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
@@ -76,7 +75,7 @@
     <br>
 
     <fmt:message key="DO_PAYMENT"/>
-    <form method="post" action="OnlineBanking24/">>
+    <form method="post" action="OnlineBanking24/">
         <select name="idFromCard" class="chargeCard" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">

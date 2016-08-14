@@ -53,7 +53,6 @@ public class CommandFactory {
         commandMap.put("PersonalCabinet/ApplicationDeclined", new DecliningApplicationCommand());
         commandMap.put("PersonalCabinet/CreateAccount", new NewAccountCommand());
         commandMap.put("sessionEnd", new LogOutCommand());
-
     }
 
     /**

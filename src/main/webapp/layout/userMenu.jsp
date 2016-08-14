@@ -24,7 +24,7 @@
 
 <ul class="headerMenu">
     <li>
-        <form action="OnlineBanking24/" method="post">
+        <form action="" method="post">
             <input type="hidden" name="ok" value="PersonalCabinet/Accounts"/>
             <input type="submit" class="btn btn-default btn-lg active" value=<fmt:message key="BTN_MY_ACCOUNTS"/>>
         </form>

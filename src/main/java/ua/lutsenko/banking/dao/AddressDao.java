@@ -1,12 +1,17 @@
 package ua.lutsenko.banking.dao;
 
 import org.apache.log4j.Logger;
+import ua.lutsenko.banking.entity.Account;
+import ua.lutsenko.banking.entity.Address;
+import ua.lutsenko.banking.entity.User;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
