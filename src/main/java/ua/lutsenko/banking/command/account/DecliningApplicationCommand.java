@@ -20,7 +20,7 @@ public class DecliningApplicationCommand implements Command {
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
 
-        int id = Integer.parseInt(wrapper.findParameterByName("applicationId"));
+        Integer id = Integer.parseInt(wrapper.findParameterByName("applicationId"));
         ApplicationDao applicationDao = DaoFactory.getInstance().getApplicationDao();
         boolean isDeleted = applicationDao.deleteApplication(id);
         if (isDeleted) {

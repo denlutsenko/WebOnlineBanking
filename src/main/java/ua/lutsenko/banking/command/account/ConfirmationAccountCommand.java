@@ -23,7 +23,7 @@ public class ConfirmationAccountCommand implements Command {
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
 
-        int userId = Integer.parseInt((String) wrapper.findSessionAttrByName("userId"));
+        Integer userId = Integer.parseInt((String) wrapper.findSessionAttrByName("userId"));
         int applicationId = Integer.parseInt((String) wrapper.findSessionAttrByName("applicationId"));
         double balance = Double.parseDouble((String) wrapper.findSessionAttrByName("balance"));
         double accountWPercent = Double.parseDouble(wrapper.findParameterByName("accountWPercent"));

@@ -21,7 +21,7 @@ public class AllAccountsCommand implements Command {
      */
     @Override
     public String execute(RequestWrapper wrapper) {
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+        Integer userId = ((User) wrapper.findSessionAttrByName("user")).getId();
 
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
         List<Condition> accountConditions = conditionDao.getAccountConditions(userId);

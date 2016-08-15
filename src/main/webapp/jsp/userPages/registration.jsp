@@ -21,17 +21,17 @@
    <fmt:message key="ENTER_FNAME"/>
     <input type="text" class="form-control" name="firstName" required
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_FNAME"/>)" oninput="setCustomValidity('')"
-           pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/><br/>
+           pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/><br/>
 
     <fmt:message key="ENTER_LNAME"/>
     <input type="text" class="form-control" name="lastName" required
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_LNAME"/>)" oninput="setCustomValidity('')"
-           pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/><br/>
+           pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/><br/>
 
     <fmt:message key="ENTER_SNAME"/>
     <input type="text" class="form-control" name="middleName" required
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_SNAME"/>)" oninput="setCustomValidity('')"
-           pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/><br/>
+           pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/><br/>
 
     <fmt:message key="ENTER_PHONE"/>
     <input type="text" class="form-control" name="phone" required
@@ -46,7 +46,7 @@
     Пароль:
     <input type="password" class="form-control" name="password" required
            oninvalid="this.setCustomValidity(<fmt:message key="HINT_ENTER_PASSWORD"/>)" oninput="setCustomValidity('')"
-           pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)|(0-9)*" value=""/><br/>
+           pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)|(0-9)*" value=""/><br/>
 
     <input type="hidden" name="ok" value="RegistrationSuccess"/>
     <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_REGISTRATION"/>/>

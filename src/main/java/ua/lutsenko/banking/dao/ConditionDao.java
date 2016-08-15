@@ -62,6 +62,8 @@ public class ConditionDao {
                 condition.setDeadLine(deadLine);
                 conditionsList.add(condition);
             }
+            ps.close();
+            rs.close();
             return conditionsList;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);
@@ -109,6 +111,8 @@ public class ConditionDao {
                 condition.setDeadLine(deadLine);
                 conditionsList.add(condition);
             }
+            ps.close();
+            rs.close();
             return conditionsList;
         } catch (SQLException e) {
             LOG.error("SQL error. Can't get conditions, ", e);
@@ -149,9 +153,11 @@ public class ConditionDao {
                 condition.setDeadLine(deadLine);
                 activeAccounts.add(condition);
             }
+            ps.close();
+            rs.close();
             return activeAccounts;
         } catch (SQLException e) {
-            LOG.error("SQL error, " + e);
+            LOG.error("SQL error, ", e);
             return null;
         }
     }
@@ -194,6 +200,7 @@ public class ConditionDao {
             ps.setDate(4, accDeadLine);
             ps.setString(5, type);
             ps.execute();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error("Bad SQL request, ", e);

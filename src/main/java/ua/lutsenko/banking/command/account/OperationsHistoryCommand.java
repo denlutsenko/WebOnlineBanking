@@ -23,7 +23,7 @@ public class OperationsHistoryCommand implements Command {
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
 
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+        Integer userId = ((User) wrapper.findSessionAttrByName("user")).getId();
 
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();
         List<Condition> accountList = conditionDao.showActiveAccounts(userId);

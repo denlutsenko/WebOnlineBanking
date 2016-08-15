@@ -21,7 +21,7 @@ public class ManagementCommand implements Command {
     @Override
     public String execute(RequestWrapper wrapper) throws SQLException {
 
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+        Integer userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         wrapper.addNewAttribute("userId", userId);
 
         AddressDao addressDao = DaoFactory.getInstance().getAddressDao();

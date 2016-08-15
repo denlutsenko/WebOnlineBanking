@@ -35,6 +35,7 @@ public class WithdrawalCommand implements Command {
         AccountDao accountDao = DaoFactory.getInstance().getAccountDao();
         boolean isAdded = accountDao.doPayment(idCard, currOperationType, currDate, operationSumm);
         if (isAdded) {
+            wrapper.addNewAttribute("msg", MSG);
             return "/jsp/userPages/personalCabinet.jsp";
         } else {
             return "/jsp/reportPages/error.jsp";

@@ -65,6 +65,7 @@ public class AddressDao {
             ps.setString(4, street);
             ps.setString(5, houseNumber);
             ps.execute();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);

@@ -19,7 +19,7 @@
     <fmt:message key="INNER_TRANSFER"/>
     <br><fmt:message key="FROM_CARD"/>
     <form method="post" action="OnlineBanking24/">
-        <select name="idFromCard" class="chargeCard" required
+        <select name="idFromCard" class="chargeCard" required id="idFromCard"
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
             <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
@@ -30,7 +30,7 @@
         </select><br>
 
         <br/><fmt:message key="TO_CARD"/><br/>
-        <select name="idToCard" class="chargeCard" required
+        <select name="idToCard" class="chargeCard" required id="idToCard" onclick="checkCards()"
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_SELECT_CARD"/>)"
                 oninput="setCustomValidity('')">
             <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
@@ -47,7 +47,7 @@
                oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?"/><br/>
 
         <input type="hidden" name="ok" value="PersonalCabinet/InnerTransferSuccess"/>
-        <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_INNER_TRANSFER"/>>
+        <input type="submit" class="btn btn-success"  value=<fmt:message key="BTN_INNER_TRANSFER"/>>
     </form>
     <br/><br/>
 
@@ -60,7 +60,7 @@
             <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
             <c:forEach items="${sessionScope.accountList}" var="accountElem">
                 <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode}
-                ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
+                        ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
             </c:forEach>
         </select>
         <input type="hidden" name="operationType" value="<fmt:message key="MSG_WITHDRAWAL"/>"/><br>
@@ -70,7 +70,7 @@
                oninput="setCustomValidity('')" pattern="[\d]+[\.]?([\d]{1,2})?"/><br/>
 
         <input type="hidden" name="ok" value="PersonalCabinet/WithdrawalSuccess"/>
-        <input type="submit" class="btn btn-success" value=<fmt:message key="BTN_TRANSFER_MONEY"/>>
+        <input type="submit" class="btn btn-success"  value=<fmt:message key="BTN_TRANSFER_MONEY"/>>
     </form>
     <br>
 
@@ -82,7 +82,7 @@
             <option disabled selected value=""><fmt:message key="SELECT_CARD"/></option>
             <c:forEach items="${sessionScope.accountList}" var="accountElem">
                 <option value="${accountElem.account.id}">${accountElem.type} ${accountElem.account.accountCode}
-                ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
+                        ${accountElem.account.currentBalance} ${accountElem.account.currency}</option>
             </c:forEach>
         </select><br/>
         <br/> <fmt:message key="AMOUNT"/><br/>
@@ -96,8 +96,18 @@
                 key="INPUT_ACCOUNT_NUMBER"/>><br/>
 
         <input type="hidden" name="ok" value="PersonalCabinet/PaymentSuccess"/>
-        <input type="submit" class="btn btn-success" value=<fmt:message key="CONFIRM_PAYMENT"/>>
+        <input type="submit" class="btn btn-success"  value=<fmt:message key="CONFIRM_PAYMENT"/>>
     </form>
 </div>
+
+
+<script type="text/javascript">
+    function checkCards() {
+        var pass1 = document.getElementById("idFromCard").value;
+        var pass2 = document.getElementById("idToCard").value;
+        if (pass1 === pass2) document.getElementById("idToCard").setCustomValidity("same cards");
+    }
+</script>
+
 </body>
 </html>

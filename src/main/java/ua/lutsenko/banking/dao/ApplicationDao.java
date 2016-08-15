@@ -49,6 +49,7 @@ public class ApplicationDao {
             ps.setDouble(5, accountBalance);
             ps.setString(6, accountStatus);
             ps.execute();
+            ps.close();
             return true;
 
         } catch (SQLException e) {
@@ -88,6 +89,8 @@ public class ApplicationDao {
                 application.setBalance(balance);
                 applicationsList.add(application);
             }
+            ps.close();
+            rs.close();
             return applicationsList;
         } catch (SQLException e) {
             LOG.error("Can't get applications ", e);
@@ -108,6 +111,7 @@ public class ApplicationDao {
             ps.setString(1, status);
             ps.setInt(2, id);
             ps.executeUpdate();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error(" Can't update application status", e);
@@ -126,6 +130,7 @@ public class ApplicationDao {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("DELETE_APPLICATION"));
             ps.setInt(1, applicationId);
             ps.executeUpdate();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error("Can't delete application", e);

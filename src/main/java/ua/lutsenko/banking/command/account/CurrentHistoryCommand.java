@@ -28,7 +28,7 @@ public class CurrentHistoryCommand implements Command {
 
         String idCard = wrapper.findParameterByName("idCard");
         int currCardId = Integer.parseInt(idCard);
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+        Integer userId = ((User) wrapper.findSessionAttrByName("user")).getId();
 
         OperationDao operationDao = DaoFactory.getInstance().getOperationDao();
         ConditionDao conditionDao = DaoFactory.getInstance().getConditionDao();

@@ -68,6 +68,7 @@ public class UserDao {
                 ps.setString(5, email);
                 ps.setString(6, password);
                 ps.execute();
+                ps.close();
             }
             return true;
         } catch (SQLException e) {
@@ -101,6 +102,8 @@ public class UserDao {
                 user.setPhoneNumber(phoneNumber);
                 user.setAdmin(isAdmin);
             }
+            ps.close();
+            rs.close();
         } catch (SQLException e) {
             LOG.error("Can't get user data ", e);
         }
@@ -113,6 +116,7 @@ public class UserDao {
             ps.setString(1, email);
             ps.setString(2, password);
             ps.executeUpdate();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error("Can't delete application", e);

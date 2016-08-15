@@ -22,19 +22,18 @@
         <url-pattern>*.js</url-pattern>
     </servlet-mapping>
 
+    <!-- Main servlet start-->
     <servlet>
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>ua.lutsenko.banking.controller.MainServlet</servlet-class>
     </servlet>
-
 
     <servlet-mapping>
         <servlet-name>MainServlet</servlet-name>
         <url-pattern>/</url-pattern>
         <url-pattern>/OnlineBanking24/</url-pattern>
     </servlet-mapping>
-
-
+    <!-- Main servlet end-->
 
     <!--DB Connection start-->
     <resource-ref>
@@ -52,7 +51,6 @@
 
     <!--encoding filter start-->
     <filter>
-
         <filter-name>EncodingFilter</filter-name>
         <filter-class>ua.lutsenko.banking.filter.EncodingFilter</filter-class>
 
@@ -60,8 +58,6 @@
             <param-name>encoding</param-name>
             <param-value>UTF-8</param-value>
         </init-param>
-
-
     </filter>
 
     <filter-mapping>
@@ -88,12 +84,9 @@
         <location>/jsp/reportPages/error.jsp</location>
     </error-page>
 
-
     <error-page>
         <error-code>404</error-code>
         <location>/jsp/reportPages/error.jsp</location>
     </error-page>
-
-
 
 </web-app>

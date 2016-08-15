@@ -59,6 +59,7 @@ public class AccountDao {
             psFundsWithdrawal.setInt(2, idCard);
             psFundsWithdrawal.executeUpdate();
             operationDao.insertOperation(conn, idCard, operationType, dateTime, operationSumm);
+            psFundsWithdrawal.close();
             return true;
         } catch (SQLException e) {
             LOG.error("DB withdrawal error", e);
@@ -95,6 +96,8 @@ public class AccountDao {
             psWithDrawalFrom.setInt(2, idFromCard);
             psWithDrawalFrom.executeUpdate();
             operationDao.insertOperation(conn, idFromCard, operationType, currDate, newSummFrom);
+            psRefillTo.close();
+            psWithDrawalFrom.close();
             return true;
         } catch (SQLException e) {
             LOG.error("inner payment false", e);
@@ -121,6 +124,8 @@ public class AccountDao {
             while (rs.next()) {
                 currency = rs.getString("currency");
             }
+            ps.close();
+            rs.close();
             return currency;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);
@@ -147,6 +152,7 @@ public class AccountDao {
             psAccount.setInt(2, cardId);
             psAccount.executeUpdate();
             operationDao.insertOperation(conn, cardId, operationType, date, opSumm);
+            psAccount.close();
             return true;
         } catch (SQLException e) {
             LOG.error("DB transaction error", e);
@@ -197,6 +203,8 @@ public class AccountDao {
                 account.setCurrentBalance(currentBalance);
                 blockedAccounts.add(account);
             }
+            ps.close();
+            rs.close();
             return blockedAccounts;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);
@@ -246,6 +254,7 @@ public class AccountDao {
 
             int lastID = getLastInsertId(conn);
             conditionDao.createConditions(conn, lastID, accountWPercent, monthlyPercent, deadLine, type);
+            psAccount.close();
             return true;
         } catch (SQLException e) {
             LOG.error(" bad transaction", e);
@@ -272,6 +281,8 @@ public class AccountDao {
             while (rs.next()) {
                 lastId = rs.getInt(1);
             }
+            ps.close();
+            rs.close();
             return lastId;
         } catch (SQLException e) {
             LOG.error("Bad SQL request ", e);

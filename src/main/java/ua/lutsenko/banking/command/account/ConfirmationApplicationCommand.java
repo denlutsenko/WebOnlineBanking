@@ -21,7 +21,7 @@ public class ConfirmationApplicationCommand implements Command {
     @Override
     public String execute(RequestWrapper wrapper) {
         final String accountStatus = "PENDING";
-        int userId = ((User) wrapper.findSessionAttrByName("user")).getId();
+        Integer userId = ((User) wrapper.findSessionAttrByName("user")).getId();
         String accountType = wrapper.findParameterByName("accountType");
         String accountCurrency = wrapper.findParameterByName("accountCurrency");
 

@@ -10,7 +10,7 @@ import java.util.ResourceBundle;
  * This class calculating new values of operations between two cards.
  */
 public class CurrencyConversion {
-    private final static ResourceBundle exchangeRates = ResourceBundle.getBundle("currentExchangeRates");
+    private final static ResourceBundle EXCHANGE_RATES = ResourceBundle.getBundle("currentExchangeRates");
 
     /**
      * This method recalculates new value of operation.
@@ -21,8 +21,8 @@ public class CurrencyConversion {
      * @return new value of operation sum.
      */
     public double getCurrencyConverter(String currFrom, String currTo, double opSumm) {
-        String tmp1 = exchangeRates.getString(currFrom);
-        String tmp2 = exchangeRates.getString(currTo);
+        String tmp1 = EXCHANGE_RATES.getString(currFrom);
+        String tmp2 = EXCHANGE_RATES.getString(currTo);
         double currencyFrom = Double.parseDouble(tmp1.trim());
         double currencyTo = Double.parseDouble(tmp2.trim());
         double result;

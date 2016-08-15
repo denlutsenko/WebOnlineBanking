@@ -62,6 +62,8 @@ public class OperationDao {
                 operation.setOperationSumm(summ);
                 historyList.add(operation);
             }
+            ps.close();
+            rs.close();
             return historyList;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);
@@ -85,6 +87,7 @@ public class OperationDao {
             psOperation.setTimestamp(3, currentDate);
             psOperation.setDouble(4,summ);
             psOperation.execute();
+            psOperation.close();
             return true;
         } catch (SQLException e) {
             LOG.error("SQL error, ", e);
@@ -97,6 +100,7 @@ public class OperationDao {
             PreparedStatement ps = conn.prepareStatement(RESOURCE_BUNDLE.getString("DELETE_OPERATION"));
             ps.setInt(1, id);
             ps.executeUpdate();
+            ps.close();
             return true;
         } catch (SQLException e) {
             LOG.error("Can't delete operation", e);

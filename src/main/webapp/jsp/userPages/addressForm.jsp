@@ -21,22 +21,22 @@
     <fmt:message key="INPUT_COUNTRY"/>
     <br/> <input type="text" name="country" required
                  oninvalid="this.setCustomValidity(<fmt:message key="HINT_COUNTRY"/>)"
-                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
-    <fmt:message key="INPUT_CITY"/>
+                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/>
+    <br/><br/><fmt:message key="INPUT_CITY"/><br/>
 
-    <br/> <input type="text" name="city" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_CITY"/>)"
-                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
-    <fmt:message key="INPUT_STREET"/>
+     <input type="text" name="city" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_CITY"/>)"
+                 oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/>
+    <br/><br/><fmt:message key="INPUT_STREET"/><br/>
 
-    <br/><input type="text" name="street" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_STREET"/>)"
-                oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ][а-яА-ЯёЁ\s]*)|([A-Za-z][A-Za-z\s]*)" value=""/>
-    <fmt:message key="INPUT_NUMBERS"/>
+    <input type="text" name="street" required oninvalid="this.setCustomValidity(<fmt:message key="HINT_STREET"/>)"
+                oninput="setCustomValidity('')" pattern="([а-яА-ЯёЁ]*)|([A-Za-z]*)" value=""/>
+    <br/><br/><fmt:message key="INPUT_NUMBERS"/><br/>
 
-    <br/><input type="text" name="houseNumber" required
+    <input type="text" name="houseNumber" required
                 oninvalid="this.setCustomValidity(<fmt:message key="HINT_HOUSE_NUMBER"/>)"
                 oninput="setCustomValidity('')" value=""/>
 
-    <input type="hidden" name="ok" value="PersonalCabinet/Form"/>
+    <input type="hidden" name="ok" value="PersonalCabinet/Form"/><br/><br/>
     <input type="submit" name="ok" value=<fmt:message key="BTN_NEXT"/>>
 </form>
 
